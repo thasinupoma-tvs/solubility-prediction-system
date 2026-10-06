@@ -1,0 +1,2 @@
+Model,Feature_Set,Learning_Rate,Batch_Size,Max_Epochs,Lambda_Phys,RMSE,MAE,R2,Best_Val_Loss,Epochs_Trained
+PINN,Combined_with_Temp,0.0005,64,300,0.001,0.5054164110588231,0.32605496048927307,0.8278486728668213,0.25506561794096516,84

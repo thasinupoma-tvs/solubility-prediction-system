@@ -1,0 +1,7 @@
+Model,RMSE,MAE,R2
+1. ANN Model,0.5035,0.3271,0.8291
+2. PINN Model,0.5054,0.3261,0.8278
+3. Chemprop Model,0.4874,0.3076,0.8399
+4. Equal Weight (ANN + PINN + Chemprop),0.4617,0.2936,0.8563
+5. Physics-Graph Blend (40% PINN + 60% CP),0.4576,0.2893,0.8589
+6. Optimal Ensemble (0.32 ANN + 0.14 PINN + 0.54 CP),0.4549,0.2878,0.8605

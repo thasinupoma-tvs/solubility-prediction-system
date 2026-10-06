@@ -1,0 +1,2 @@
+Model,Feature_Set,Batch_Size,Max_Epochs,RMSE,MAE,R2,Epochs_Trained
+Chemprop,SMILES_Solute_Solvent_Temp,64,20,0.4874443992603795,0.30760461609671114,0.8398740272406303,20

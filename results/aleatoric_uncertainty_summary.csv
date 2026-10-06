@@ -1,0 +1,2 @@
+Dataset,Total_Samples,Duplicate_Groups_Found,Mean_Within_Group_Std_LogS,Theoretical_Intrinsic_RMSE_Floor,Max_Min_Spread_Mean,Max_Min_Spread_Max
+BigSolDB 2.0,103944,3234,0.1,0.2,0.14,6.5

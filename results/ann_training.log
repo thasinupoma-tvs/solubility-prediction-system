@@ -1,0 +1,2507 @@
+Loading pre-split raw data frameworks...
+Loading pre-extracted specific features...
+Creating MACCS feature datasets...
+Creating RDKit feature datasets...
+Loading combined feature datasets...
+
+
+======================================================================
+CHECKING FEATURE DATASETS
+======================================================================
+
+
+Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape : (20111, 344)
+
+
+Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape : (20111, 343)
+
+
+Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape : (20111, 30)
+
+
+Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape : (20111, 29)
+
+
+Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape : (20111, 362)
+
+
+======================================================================
+STARTING Config_1
+Learning Rate : 0.001
+Batch Size    : 32
+Epochs        : 300
+Seeds         : [42, 7, 99, 123, 2024]
+Expected runs : 25
+======================================================================
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape: (20111, 344)
+----------------------------------------------------------------------
+
+
+Running Config_1 | Exp1_MACCS_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.21224 | Val Loss: 0.30752
+Epoch 40 | Train Loss: 0.15596 | Val Loss: 0.30941
+Epoch 60 | Train Loss: 0.14319 | Val Loss: 0.29536
+Early stopping at epoch 75
+
+Final Performance
+RMSE: 0.5305
+MAE : 0.3487
+R²  : 0.8104
+----------------------------------------
+Completed | RMSE: 0.530482 | MAE: 0.348671 | R2: 0.810350
+
+
+Running Config_1 | Exp1_MACCS_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.21053 | Val Loss: 0.32353
+Epoch 40 | Train Loss: 0.17199 | Val Loss: 0.29751
+Epoch 60 | Train Loss: 0.14261 | Val Loss: 0.29267
+Early stopping at epoch 75
+
+Final Performance
+RMSE: 0.5276
+MAE : 0.3497
+R²  : 0.8124
+----------------------------------------
+Completed | RMSE: 0.527620 | MAE: 0.349733 | R2: 0.812391
+
+
+Running Config_1 | Exp1_MACCS_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.20828 | Val Loss: 0.31022
+Epoch 40 | Train Loss: 0.16005 | Val Loss: 0.28660
+Epoch 60 | Train Loss: 0.13683 | Val Loss: 0.28784
+Epoch 80 | Train Loss: 0.12871 | Val Loss: 0.28339
+Epoch 100 | Train Loss: 0.12630 | Val Loss: 0.28388
+Epoch 120 | Train Loss: 0.12377 | Val Loss: 0.28013
+Epoch 140 | Train Loss: 0.12053 | Val Loss: 0.28094
+Early stopping at epoch 148
+
+Final Performance
+RMSE: 0.5246
+MAE : 0.3444
+R²  : 0.8145
+----------------------------------------
+Completed | RMSE: 0.524627 | MAE: 0.344400 | R2: 0.814513
+
+
+Running Config_1 | Exp1_MACCS_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.20510 | Val Loss: 0.30812
+Epoch 40 | Train Loss: 0.17301 | Val Loss: 0.29537
+Epoch 60 | Train Loss: 0.14237 | Val Loss: 0.28665
+Epoch 80 | Train Loss: 0.12952 | Val Loss: 0.27846
+Epoch 100 | Train Loss: 0.12585 | Val Loss: 0.27418
+Early stopping at epoch 112
+
+Final Performance
+RMSE: 0.5235
+MAE : 0.3447
+R²  : 0.8153
+----------------------------------------
+Completed | RMSE: 0.523511 | MAE: 0.344657 | R2: 0.815301
+
+
+Running Config_1 | Exp1_MACCS_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.20718 | Val Loss: 0.31431
+Epoch 40 | Train Loss: 0.16900 | Val Loss: 0.29361
+Epoch 60 | Train Loss: 0.14244 | Val Loss: 0.29516
+Early stopping at epoch 73
+
+Final Performance
+RMSE: 0.5330
+MAE : 0.3503
+R²  : 0.8085
+----------------------------------------
+Completed | RMSE: 0.532995 | MAE: 0.350282 | R2: 0.808549
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape: (20111, 343)
+----------------------------------------------------------------------
+
+
+Running Config_1 | Exp2_MACCS_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.25242 | Val Loss: 0.36582
+Epoch 40 | Train Loss: 0.20503 | Val Loss: 0.34114
+Epoch 60 | Train Loss: 0.19041 | Val Loss: 0.33950
+Early stopping at epoch 73
+
+Final Performance
+RMSE: 0.5780
+MAE : 0.4058
+R²  : 0.7749
+----------------------------------------
+Completed | RMSE: 0.577965 | MAE: 0.405820 | R2: 0.774880
+
+
+Running Config_1 | Exp2_MACCS_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.25411 | Val Loss: 0.35400
+Epoch 40 | Train Loss: 0.21857 | Val Loss: 0.35494
+Early stopping at epoch 59
+
+Final Performance
+RMSE: 0.5792
+MAE : 0.4093
+R²  : 0.7739
+----------------------------------------
+Completed | RMSE: 0.579183 | MAE: 0.409313 | R2: 0.773930
+
+
+Running Config_1 | Exp2_MACCS_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.25890 | Val Loss: 0.36275
+Epoch 40 | Train Loss: 0.20788 | Val Loss: 0.34399
+Epoch 60 | Train Loss: 0.19030 | Val Loss: 0.34807
+Early stopping at epoch 72
+
+Final Performance
+RMSE: 0.5743
+MAE : 0.4037
+R²  : 0.7778
+----------------------------------------
+Completed | RMSE: 0.574258 | MAE: 0.403660 | R2: 0.777758
+
+
+Running Config_1 | Exp2_MACCS_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.25631 | Val Loss: 0.36153
+Epoch 40 | Train Loss: 0.20145 | Val Loss: 0.35416
+Early stopping at epoch 56
+
+Final Performance
+RMSE: 0.5796
+MAE : 0.4088
+R²  : 0.7736
+----------------------------------------
+Completed | RMSE: 0.579622 | MAE: 0.408763 | R2: 0.773587
+
+
+Running Config_1 | Exp2_MACCS_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.25565 | Val Loss: 0.36781
+Epoch 40 | Train Loss: 0.21954 | Val Loss: 0.34241
+Epoch 60 | Train Loss: 0.18774 | Val Loss: 0.33112
+Early stopping at epoch 80
+
+Final Performance
+RMSE: 0.5755
+MAE : 0.4053
+R²  : 0.7768
+----------------------------------------
+Completed | RMSE: 0.575525 | MAE: 0.405305 | R2: 0.776776
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape: (20111, 30)
+----------------------------------------------------------------------
+
+
+Running Config_1 | Exp3_RDKit_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.57613 | Val Loss: 0.51807
+Epoch 40 | Train Loss: 0.51760 | Val Loss: 0.48169
+Epoch 60 | Train Loss: 0.49432 | Val Loss: 0.43478
+Epoch 80 | Train Loss: 0.47663 | Val Loss: 0.42186
+Epoch 100 | Train Loss: 0.44457 | Val Loss: 0.40535
+Epoch 120 | Train Loss: 0.43538 | Val Loss: 0.38494
+Early stopping at epoch 122
+
+Final Performance
+RMSE: 0.6168
+MAE : 0.4480
+R²  : 0.7436
+----------------------------------------
+Completed | RMSE: 0.616810 | MAE: 0.447978 | R2: 0.743602
+
+
+Running Config_1 | Exp3_RDKit_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.57932 | Val Loss: 0.48656
+Epoch 40 | Train Loss: 0.51876 | Val Loss: 0.45272
+Epoch 60 | Train Loss: 0.49097 | Val Loss: 0.41525
+Epoch 80 | Train Loss: 0.47640 | Val Loss: 0.41505
+Epoch 100 | Train Loss: 0.46285 | Val Loss: 0.39986
+Epoch 120 | Train Loss: 0.43619 | Val Loss: 0.38127
+Epoch 140 | Train Loss: 0.41820 | Val Loss: 0.39208
+Early stopping at epoch 141
+
+Final Performance
+RMSE: 0.6116
+MAE : 0.4439
+R²  : 0.7480
+----------------------------------------
+Completed | RMSE: 0.611553 | MAE: 0.443942 | R2: 0.747954
+
+
+Running Config_1 | Exp3_RDKit_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.57957 | Val Loss: 0.50047
+Epoch 40 | Train Loss: 0.52310 | Val Loss: 0.47582
+Epoch 60 | Train Loss: 0.49334 | Val Loss: 0.41924
+Epoch 80 | Train Loss: 0.47738 | Val Loss: 0.43202
+Epoch 100 | Train Loss: 0.44767 | Val Loss: 0.41027
+Epoch 120 | Train Loss: 0.42889 | Val Loss: 0.38644
+Epoch 140 | Train Loss: 0.42198 | Val Loss: 0.39574
+Early stopping at epoch 149
+
+Final Performance
+RMSE: 0.6133
+MAE : 0.4463
+R²  : 0.7465
+----------------------------------------
+Completed | RMSE: 0.613281 | MAE: 0.446299 | R2: 0.746528
+
+
+Running Config_1 | Exp3_RDKit_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.57910 | Val Loss: 0.48494
+Epoch 40 | Train Loss: 0.52334 | Val Loss: 0.43808
+Epoch 60 | Train Loss: 0.48987 | Val Loss: 0.43606
+Epoch 80 | Train Loss: 0.47548 | Val Loss: 0.40322
+Epoch 100 | Train Loss: 0.44042 | Val Loss: 0.39327
+Epoch 120 | Train Loss: 0.43419 | Val Loss: 0.38410
+Epoch 140 | Train Loss: 0.42027 | Val Loss: 0.38522
+Epoch 160 | Train Loss: 0.42283 | Val Loss: 0.38364
+Early stopping at epoch 164
+
+Final Performance
+RMSE: 0.6074
+MAE : 0.4386
+R²  : 0.7514
+----------------------------------------
+Completed | RMSE: 0.607367 | MAE: 0.438577 | R2: 0.751393
+
+
+Running Config_1 | Exp3_RDKit_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.57822 | Val Loss: 0.48151
+Epoch 40 | Train Loss: 0.51853 | Val Loss: 0.43587
+Epoch 60 | Train Loss: 0.49086 | Val Loss: 0.43854
+Epoch 80 | Train Loss: 0.45541 | Val Loss: 0.40813
+Epoch 100 | Train Loss: 0.44332 | Val Loss: 0.39892
+Epoch 120 | Train Loss: 0.42856 | Val Loss: 0.38465
+Epoch 140 | Train Loss: 0.42491 | Val Loss: 0.37821
+Early stopping at epoch 146
+
+Final Performance
+RMSE: 0.6131
+MAE : 0.4452
+R²  : 0.7466
+----------------------------------------
+Completed | RMSE: 0.613143 | MAE: 0.445207 | R2: 0.746641
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape: (20111, 29)
+----------------------------------------------------------------------
+
+
+Running Config_1 | Exp4_RDKit_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.61506 | Val Loss: 0.54890
+Epoch 40 | Train Loss: 0.55740 | Val Loss: 0.47892
+Epoch 60 | Train Loss: 0.53038 | Val Loss: 0.47320
+Epoch 80 | Train Loss: 0.49739 | Val Loss: 0.44020
+Epoch 100 | Train Loss: 0.48498 | Val Loss: 0.43424
+Epoch 120 | Train Loss: 0.47629 | Val Loss: 0.43995
+Epoch 140 | Train Loss: 0.46475 | Val Loss: 0.44371
+Epoch 160 | Train Loss: 0.45512 | Val Loss: 0.42306
+Epoch 180 | Train Loss: 0.45084 | Val Loss: 0.42719
+Early stopping at epoch 187
+
+Final Performance
+RMSE: 0.6456
+MAE : 0.4762
+R²  : 0.7191
+----------------------------------------
+Completed | RMSE: 0.645593 | MAE: 0.476177 | R2: 0.719114
+
+
+Running Config_1 | Exp4_RDKit_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.62170 | Val Loss: 0.53199
+Epoch 40 | Train Loss: 0.56081 | Val Loss: 0.47377
+Epoch 60 | Train Loss: 0.53307 | Val Loss: 0.46682
+Epoch 80 | Train Loss: 0.51257 | Val Loss: 0.46041
+Epoch 100 | Train Loss: 0.48168 | Val Loss: 0.43355
+Epoch 120 | Train Loss: 0.47320 | Val Loss: 0.43179
+Epoch 140 | Train Loss: 0.46058 | Val Loss: 0.42973
+Early stopping at epoch 142
+
+Final Performance
+RMSE: 0.6486
+MAE : 0.4818
+R²  : 0.7165
+----------------------------------------
+Completed | RMSE: 0.648559 | MAE: 0.481832 | R2: 0.716528
+
+
+Running Config_1 | Exp4_RDKit_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.61207 | Val Loss: 0.53520
+Epoch 40 | Train Loss: 0.55808 | Val Loss: 0.46985
+Epoch 60 | Train Loss: 0.50960 | Val Loss: 0.45647
+Epoch 80 | Train Loss: 0.49650 | Val Loss: 0.44511
+Epoch 100 | Train Loss: 0.48169 | Val Loss: 0.43354
+Epoch 120 | Train Loss: 0.47090 | Val Loss: 0.43828
+Epoch 140 | Train Loss: 0.46488 | Val Loss: 0.42024
+Epoch 160 | Train Loss: 0.46210 | Val Loss: 0.42688
+Early stopping at epoch 168
+
+Final Performance
+RMSE: 0.6421
+MAE : 0.4732
+R²  : 0.7222
+----------------------------------------
+Completed | RMSE: 0.642082 | MAE: 0.473249 | R2: 0.722161
+
+
+Running Config_1 | Exp4_RDKit_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.62119 | Val Loss: 0.55640
+Epoch 40 | Train Loss: 0.55543 | Val Loss: 0.48057
+Epoch 60 | Train Loss: 0.52693 | Val Loss: 0.46226
+Epoch 80 | Train Loss: 0.51146 | Val Loss: 0.44760
+Epoch 100 | Train Loss: 0.48323 | Val Loss: 0.44992
+Epoch 120 | Train Loss: 0.46693 | Val Loss: 0.43401
+Epoch 140 | Train Loss: 0.46142 | Val Loss: 0.42598
+Early stopping at epoch 147
+
+Final Performance
+RMSE: 0.6478
+MAE : 0.4757
+R²  : 0.7172
+----------------------------------------
+Completed | RMSE: 0.647766 | MAE: 0.475669 | R2: 0.717221
+
+
+Running Config_1 | Exp4_RDKit_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.61407 | Val Loss: 0.51992
+Epoch 40 | Train Loss: 0.55860 | Val Loss: 0.48991
+Epoch 60 | Train Loss: 0.53320 | Val Loss: 0.46255
+Epoch 80 | Train Loss: 0.49327 | Val Loss: 0.44634
+Epoch 100 | Train Loss: 0.47807 | Val Loss: 0.43598
+Epoch 120 | Train Loss: 0.47017 | Val Loss: 0.43983
+Early stopping at epoch 121
+
+Final Performance
+RMSE: 0.6508
+MAE : 0.4816
+R²  : 0.7146
+----------------------------------------
+Completed | RMSE: 0.650813 | MAE: 0.481648 | R2: 0.714554
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape: (20111, 362)
+----------------------------------------------------------------------
+
+
+Running Config_1 | Exp5_Combined_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.20160 | Val Loss: 0.29513
+Epoch 40 | Train Loss: 0.14921 | Val Loss: 0.27761
+Epoch 60 | Train Loss: 0.13154 | Val Loss: 0.27953
+Epoch 80 | Train Loss: 0.12426 | Val Loss: 0.27142
+Early stopping at epoch 86
+
+Final Performance
+RMSE: 0.5168
+MAE : 0.3349
+R²  : 0.8200
+----------------------------------------
+Completed | RMSE: 0.516804 | MAE: 0.334946 | R2: 0.820004
+
+
+Running Config_1 | Exp5_Combined_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.20038 | Val Loss: 0.29438
+Epoch 40 | Train Loss: 0.15054 | Val Loss: 0.26782
+Early stopping at epoch 60
+
+Final Performance
+RMSE: 0.5176
+MAE : 0.3431
+R²  : 0.8195
+----------------------------------------
+Completed | RMSE: 0.517587 | MAE: 0.343102 | R2: 0.819458
+
+
+Running Config_1 | Exp5_Combined_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.20118 | Val Loss: 0.29447
+Epoch 40 | Train Loss: 0.16232 | Val Loss: 0.29595
+Epoch 60 | Train Loss: 0.13485 | Val Loss: 0.28073
+Epoch 80 | Train Loss: 0.12400 | Val Loss: 0.27161
+Epoch 100 | Train Loss: 0.11828 | Val Loss: 0.27394
+Epoch 120 | Train Loss: 0.11378 | Val Loss: 0.27071
+Early stopping at epoch 124
+
+Final Performance
+RMSE: 0.5161
+MAE : 0.3325
+R²  : 0.8205
+----------------------------------------
+Completed | RMSE: 0.516073 | MAE: 0.332473 | R2: 0.820513
+
+
+Running Config_1 | Exp5_Combined_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.19926 | Val Loss: 0.29609
+Epoch 40 | Train Loss: 0.16563 | Val Loss: 0.28338
+Epoch 60 | Train Loss: 0.13698 | Val Loss: 0.27356
+Early stopping at epoch 75
+
+Final Performance
+RMSE: 0.5146
+MAE : 0.3379
+R²  : 0.8215
+----------------------------------------
+Completed | RMSE: 0.514635 | MAE: 0.337882 | R2: 0.821511
+
+
+Running Config_1 | Exp5_Combined_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.19876 | Val Loss: 0.28340
+Epoch 40 | Train Loss: 0.16354 | Val Loss: 0.27404
+Epoch 60 | Train Loss: 0.13638 | Val Loss: 0.27721
+Early stopping at epoch 64
+
+Final Performance
+RMSE: 0.5189
+MAE : 0.3469
+R²  : 0.8186
+----------------------------------------
+Completed | RMSE: 0.518856 | MAE: 0.346897 | R2: 0.818571
+
+
+----------------------------------------------------------------------
+Config_1 COMPLETED
+Runs completed: 25
+Configuration results saved to:
+C:\solubility prediction system\results\Config_1_results.xlsx
+----------------------------------------------------------------------
+
+
+======================================================================
+STARTING Config_2
+Learning Rate : 0.001
+Batch Size    : 64
+Epochs        : 300
+Seeds         : [42, 7, 99, 123, 2024]
+Expected runs : 25
+======================================================================
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape: (20111, 344)
+----------------------------------------------------------------------
+
+
+Running Config_2 | Exp1_MACCS_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.17399 | Val Loss: 0.29710
+Epoch 40 | Train Loss: 0.14080 | Val Loss: 0.28995
+Epoch 60 | Train Loss: 0.12472 | Val Loss: 0.28607
+Epoch 80 | Train Loss: 0.10735 | Val Loss: 0.28259
+Epoch 100 | Train Loss: 0.09941 | Val Loss: 0.28310
+Epoch 120 | Train Loss: 0.09477 | Val Loss: 0.27936
+Early stopping at epoch 123
+
+Final Performance
+RMSE: 0.5232
+MAE : 0.3396
+R²  : 0.8155
+----------------------------------------
+Completed | RMSE: 0.523241 | MAE: 0.339619 | R2: 0.815492
+
+
+Running Config_2 | Exp1_MACCS_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.17343 | Val Loss: 0.30553
+Epoch 40 | Train Loss: 0.13870 | Val Loss: 0.30134
+Epoch 60 | Train Loss: 0.11555 | Val Loss: 0.28911
+Epoch 80 | Train Loss: 0.10338 | Val Loss: 0.28297
+Early stopping at epoch 85
+
+Final Performance
+RMSE: 0.5226
+MAE : 0.3424
+R²  : 0.8159
+----------------------------------------
+Completed | RMSE: 0.522643 | MAE: 0.342393 | R2: 0.815914
+
+
+Running Config_2 | Exp1_MACCS_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.17235 | Val Loss: 0.30336
+Epoch 40 | Train Loss: 0.13953 | Val Loss: 0.28549
+Epoch 60 | Train Loss: 0.11445 | Val Loss: 0.28244
+Epoch 80 | Train Loss: 0.10536 | Val Loss: 0.27970
+Early stopping at epoch 93
+
+Final Performance
+RMSE: 0.5241
+MAE : 0.3435
+R²  : 0.8149
+----------------------------------------
+Completed | RMSE: 0.524053 | MAE: 0.343514 | R2: 0.814919
+
+
+Running Config_2 | Exp1_MACCS_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.17154 | Val Loss: 0.30731
+Epoch 40 | Train Loss: 0.12708 | Val Loss: 0.28617
+Epoch 60 | Train Loss: 0.11636 | Val Loss: 0.28434
+Epoch 80 | Train Loss: 0.10747 | Val Loss: 0.28178
+Epoch 100 | Train Loss: 0.10138 | Val Loss: 0.28366
+Early stopping at epoch 105
+
+Final Performance
+RMSE: 0.5271
+MAE : 0.3402
+R²  : 0.8128
+----------------------------------------
+Completed | RMSE: 0.527095 | MAE: 0.340157 | R2: 0.812764
+
+
+Running Config_2 | Exp1_MACCS_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.17098 | Val Loss: 0.29568
+Epoch 40 | Train Loss: 0.12630 | Val Loss: 0.28591
+Epoch 60 | Train Loss: 0.11197 | Val Loss: 0.28108
+Epoch 80 | Train Loss: 0.10213 | Val Loss: 0.27709
+Epoch 100 | Train Loss: 0.09977 | Val Loss: 0.27824
+Early stopping at epoch 116
+
+Final Performance
+RMSE: 0.5229
+MAE : 0.3407
+R²  : 0.8158
+----------------------------------------
+Completed | RMSE: 0.522856 | MAE: 0.340680 | R2: 0.815764
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape: (20111, 343)
+----------------------------------------------------------------------
+
+
+Running Config_2 | Exp2_MACCS_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.22184 | Val Loss: 0.35871
+Epoch 40 | Train Loss: 0.17664 | Val Loss: 0.34316
+Epoch 60 | Train Loss: 0.15859 | Val Loss: 0.33404
+Epoch 80 | Train Loss: 0.15492 | Val Loss: 0.33287
+Early stopping at epoch 94
+
+Final Performance
+RMSE: 0.5744
+MAE : 0.3999
+R²  : 0.7777
+----------------------------------------
+Completed | RMSE: 0.574352 | MAE: 0.399925 | R2: 0.777685
+
+
+Running Config_2 | Exp2_MACCS_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.22099 | Val Loss: 0.35184
+Epoch 40 | Train Loss: 0.17635 | Val Loss: 0.35114
+Epoch 60 | Train Loss: 0.16516 | Val Loss: 0.34411
+Epoch 80 | Train Loss: 0.15088 | Val Loss: 0.33548
+Epoch 100 | Train Loss: 0.14832 | Val Loss: 0.33662
+Early stopping at epoch 102
+
+Final Performance
+RMSE: 0.5768
+MAE : 0.4033
+R²  : 0.7758
+----------------------------------------
+Completed | RMSE: 0.576799 | MAE: 0.403347 | R2: 0.775787
+
+
+Running Config_2 | Exp2_MACCS_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.22272 | Val Loss: 0.36379
+Epoch 40 | Train Loss: 0.17896 | Val Loss: 0.34231
+Epoch 60 | Train Loss: 0.15968 | Val Loss: 0.33672
+Epoch 80 | Train Loss: 0.15528 | Val Loss: 0.32491
+Early stopping at epoch 91
+
+Final Performance
+RMSE: 0.5676
+MAE : 0.3982
+R²  : 0.7829
+----------------------------------------
+Completed | RMSE: 0.567564 | MAE: 0.398194 | R2: 0.782910
+
+
+Running Config_2 | Exp2_MACCS_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.22053 | Val Loss: 0.35092
+Epoch 40 | Train Loss: 0.17522 | Val Loss: 0.33694
+Epoch 60 | Train Loss: 0.15943 | Val Loss: 0.32937
+Early stopping at epoch 70
+
+Final Performance
+RMSE: 0.5728
+MAE : 0.4022
+R²  : 0.7789
+----------------------------------------
+Completed | RMSE: 0.572805 | MAE: 0.402235 | R2: 0.778882
+
+
+Running Config_2 | Exp2_MACCS_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.22179 | Val Loss: 0.35061
+Epoch 40 | Train Loss: 0.19036 | Val Loss: 0.34161
+Epoch 60 | Train Loss: 0.17358 | Val Loss: 0.33454
+Epoch 80 | Train Loss: 0.15549 | Val Loss: 0.33623
+Epoch 100 | Train Loss: 0.14694 | Val Loss: 0.33121
+Early stopping at epoch 101
+
+Final Performance
+RMSE: 0.5724
+MAE : 0.4008
+R²  : 0.7792
+----------------------------------------
+Completed | RMSE: 0.572448 | MAE: 0.400811 | R2: 0.779157
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape: (20111, 30)
+----------------------------------------------------------------------
+
+
+Running Config_2 | Exp3_RDKit_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.49927 | Val Loss: 0.44928
+Epoch 40 | Train Loss: 0.43738 | Val Loss: 0.43444
+Epoch 60 | Train Loss: 0.40423 | Val Loss: 0.38489
+Epoch 80 | Train Loss: 0.39229 | Val Loss: 0.38300
+Epoch 100 | Train Loss: 0.36270 | Val Loss: 0.37389
+Epoch 120 | Train Loss: 0.35201 | Val Loss: 0.35842
+Epoch 140 | Train Loss: 0.34029 | Val Loss: 0.37117
+Early stopping at epoch 145
+
+Final Performance
+RMSE: 0.5941
+MAE : 0.4154
+R²  : 0.7621
+----------------------------------------
+Completed | RMSE: 0.594097 | MAE: 0.415412 | R2: 0.762137
+
+
+Running Config_2 | Exp3_RDKit_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.49702 | Val Loss: 0.44047
+Epoch 40 | Train Loss: 0.43403 | Val Loss: 0.40980
+Epoch 60 | Train Loss: 0.40565 | Val Loss: 0.38679
+Epoch 80 | Train Loss: 0.38971 | Val Loss: 0.37744
+Epoch 100 | Train Loss: 0.37595 | Val Loss: 0.36616
+Epoch 120 | Train Loss: 0.35331 | Val Loss: 0.36303
+Epoch 140 | Train Loss: 0.34157 | Val Loss: 0.35318
+Early stopping at epoch 141
+
+Final Performance
+RMSE: 0.5906
+MAE : 0.4177
+R²  : 0.7649
+----------------------------------------
+Completed | RMSE: 0.590605 | MAE: 0.417661 | R2: 0.764925
+
+
+Running Config_2 | Exp3_RDKit_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.49365 | Val Loss: 0.44987
+Epoch 40 | Train Loss: 0.43231 | Val Loss: 0.40890
+Epoch 60 | Train Loss: 0.40742 | Val Loss: 0.38878
+Epoch 80 | Train Loss: 0.37463 | Val Loss: 0.37403
+Epoch 100 | Train Loss: 0.35666 | Val Loss: 0.36520
+Epoch 120 | Train Loss: 0.34813 | Val Loss: 0.35814
+Epoch 140 | Train Loss: 0.34153 | Val Loss: 0.35735
+Epoch 160 | Train Loss: 0.33783 | Val Loss: 0.35375
+Epoch 180 | Train Loss: 0.33501 | Val Loss: 0.35394
+Early stopping at epoch 183
+
+Final Performance
+RMSE: 0.5916
+MAE : 0.4169
+R²  : 0.7641
+----------------------------------------
+Completed | RMSE: 0.591598 | MAE: 0.416865 | R2: 0.764134
+
+
+Running Config_2 | Exp3_RDKit_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.50016 | Val Loss: 0.44029
+Epoch 40 | Train Loss: 0.43808 | Val Loss: 0.40928
+Epoch 60 | Train Loss: 0.40593 | Val Loss: 0.39119
+Epoch 80 | Train Loss: 0.39090 | Val Loss: 0.37534
+Epoch 100 | Train Loss: 0.37978 | Val Loss: 0.37371
+Epoch 120 | Train Loss: 0.35904 | Val Loss: 0.36028
+Epoch 140 | Train Loss: 0.34322 | Val Loss: 0.35312
+Epoch 160 | Train Loss: 0.33680 | Val Loss: 0.35337
+Early stopping at epoch 168
+
+Final Performance
+RMSE: 0.5899
+MAE : 0.4179
+R²  : 0.7655
+----------------------------------------
+Completed | RMSE: 0.589911 | MAE: 0.417908 | R2: 0.765478
+
+
+Running Config_2 | Exp3_RDKit_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.49848 | Val Loss: 0.43606
+Epoch 40 | Train Loss: 0.43545 | Val Loss: 0.39626
+Epoch 60 | Train Loss: 0.40677 | Val Loss: 0.39015
+Epoch 80 | Train Loss: 0.37329 | Val Loss: 0.36720
+Epoch 100 | Train Loss: 0.35496 | Val Loss: 0.36191
+Epoch 120 | Train Loss: 0.34439 | Val Loss: 0.35933
+Epoch 140 | Train Loss: 0.34285 | Val Loss: 0.35878
+Epoch 160 | Train Loss: 0.34286 | Val Loss: 0.35568
+Early stopping at epoch 162
+
+Final Performance
+RMSE: 0.5931
+MAE : 0.4188
+R²  : 0.7629
+----------------------------------------
+Completed | RMSE: 0.593097 | MAE: 0.418759 | R2: 0.762937
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape: (20111, 29)
+----------------------------------------------------------------------
+
+
+Running Config_2 | Exp4_RDKit_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.53805 | Val Loss: 0.50022
+Epoch 40 | Train Loss: 0.47351 | Val Loss: 0.44776
+Epoch 60 | Train Loss: 0.42708 | Val Loss: 0.42947
+Epoch 80 | Train Loss: 0.40977 | Val Loss: 0.41706
+Epoch 100 | Train Loss: 0.39913 | Val Loss: 0.41072
+Epoch 120 | Train Loss: 0.39035 | Val Loss: 0.40491
+Early stopping at epoch 135
+
+Final Performance
+RMSE: 0.6349
+MAE : 0.4621
+R²  : 0.7284
+----------------------------------------
+Completed | RMSE: 0.634872 | MAE: 0.462113 | R2: 0.728366
+
+
+Running Config_2 | Exp4_RDKit_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.53894 | Val Loss: 0.51151
+Epoch 40 | Train Loss: 0.47337 | Val Loss: 0.43680
+Epoch 60 | Train Loss: 0.44443 | Val Loss: 0.43778
+Epoch 80 | Train Loss: 0.41309 | Val Loss: 0.40596
+Epoch 100 | Train Loss: 0.39970 | Val Loss: 0.40759
+Epoch 120 | Train Loss: 0.39869 | Val Loss: 0.39495
+Early stopping at epoch 131
+
+Final Performance
+RMSE: 0.6284
+MAE : 0.4576
+R²  : 0.7339
+----------------------------------------
+Completed | RMSE: 0.628358 | MAE: 0.457575 | R2: 0.733912
+
+
+Running Config_2 | Exp4_RDKit_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.53731 | Val Loss: 0.50043
+Epoch 40 | Train Loss: 0.47545 | Val Loss: 0.44611
+Epoch 60 | Train Loss: 0.44500 | Val Loss: 0.43485
+Epoch 80 | Train Loss: 0.41172 | Val Loss: 0.42104
+Epoch 100 | Train Loss: 0.39558 | Val Loss: 0.41739
+Early stopping at epoch 112
+
+Final Performance
+RMSE: 0.6421
+MAE : 0.4686
+R²  : 0.7222
+----------------------------------------
+Completed | RMSE: 0.642073 | MAE: 0.468646 | R2: 0.722170
+
+
+Running Config_2 | Exp4_RDKit_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.53747 | Val Loss: 0.48446
+Epoch 40 | Train Loss: 0.47123 | Val Loss: 0.44013
+Epoch 60 | Train Loss: 0.44499 | Val Loss: 0.42605
+Epoch 80 | Train Loss: 0.42586 | Val Loss: 0.41503
+Epoch 100 | Train Loss: 0.40020 | Val Loss: 0.41271
+Epoch 120 | Train Loss: 0.38160 | Val Loss: 0.40108
+Epoch 140 | Train Loss: 0.38196 | Val Loss: 0.40637
+Early stopping at epoch 144
+
+Final Performance
+RMSE: 0.6331
+MAE : 0.4600
+R²  : 0.7299
+----------------------------------------
+Completed | RMSE: 0.633097 | MAE: 0.460046 | R2: 0.729883
+
+
+Running Config_2 | Exp4_RDKit_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.53763 | Val Loss: 0.48566
+Epoch 40 | Train Loss: 0.47226 | Val Loss: 0.45605
+Epoch 60 | Train Loss: 0.44821 | Val Loss: 0.42455
+Epoch 80 | Train Loss: 0.43043 | Val Loss: 0.41709
+Epoch 100 | Train Loss: 0.41544 | Val Loss: 0.40651
+Epoch 120 | Train Loss: 0.39591 | Val Loss: 0.39806
+Epoch 140 | Train Loss: 0.38054 | Val Loss: 0.40126
+Epoch 160 | Train Loss: 0.37504 | Val Loss: 0.39687
+Epoch 180 | Train Loss: 0.37454 | Val Loss: 0.39726
+Early stopping at epoch 198
+
+Final Performance
+RMSE: 0.6257
+MAE : 0.4538
+R²  : 0.7362
+----------------------------------------
+Completed | RMSE: 0.625679 | MAE: 0.453808 | R2: 0.736175
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape: (20111, 362)
+----------------------------------------------------------------------
+
+
+Running Config_2 | Exp5_Combined_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.16575 | Val Loss: 0.29004
+Epoch 40 | Train Loss: 0.13317 | Val Loss: 0.27917
+Epoch 60 | Train Loss: 0.11841 | Val Loss: 0.27896
+Epoch 80 | Train Loss: 0.10068 | Val Loss: 0.27047
+Epoch 100 | Train Loss: 0.09257 | Val Loss: 0.26727
+Early stopping at epoch 105
+
+Final Performance
+RMSE: 0.5130
+MAE : 0.3325
+R²  : 0.8227
+----------------------------------------
+Completed | RMSE: 0.512962 | MAE: 0.332506 | R2: 0.822670
+
+
+Running Config_2 | Exp5_Combined_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.16561 | Val Loss: 0.27378
+Epoch 40 | Train Loss: 0.13076 | Val Loss: 0.26949
+Epoch 60 | Train Loss: 0.10700 | Val Loss: 0.26059
+Early stopping at epoch 79
+
+Final Performance
+RMSE: 0.5081
+MAE : 0.3322
+R²  : 0.8260
+----------------------------------------
+Completed | RMSE: 0.508134 | MAE: 0.332224 | R2: 0.825992
+
+
+Running Config_2 | Exp5_Combined_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.16450 | Val Loss: 0.27645
+Epoch 40 | Train Loss: 0.11986 | Val Loss: 0.26884
+Epoch 60 | Train Loss: 0.10551 | Val Loss: 0.26271
+Epoch 80 | Train Loss: 0.09918 | Val Loss: 0.25966
+Epoch 100 | Train Loss: 0.09651 | Val Loss: 0.25912
+Early stopping at epoch 103
+
+Final Performance
+RMSE: 0.5053
+MAE : 0.3264
+R²  : 0.8280
+----------------------------------------
+Completed | RMSE: 0.505255 | MAE: 0.326417 | R2: 0.827959
+
+
+Running Config_2 | Exp5_Combined_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.16356 | Val Loss: 0.28814
+Epoch 40 | Train Loss: 0.13118 | Val Loss: 0.28167
+Epoch 60 | Train Loss: 0.10768 | Val Loss: 0.26686
+Epoch 80 | Train Loss: 0.09643 | Val Loss: 0.26156
+Early stopping at epoch 83
+
+Final Performance
+RMSE: 0.5099
+MAE : 0.3298
+R²  : 0.8248
+----------------------------------------
+Completed | RMSE: 0.509916 | MAE: 0.329777 | R2: 0.824770
+
+
+Running Config_2 | Exp5_Combined_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.16462 | Val Loss: 0.28358
+Epoch 40 | Train Loss: 0.13510 | Val Loss: 0.27365
+Epoch 60 | Train Loss: 0.11854 | Val Loss: 0.26711
+Epoch 80 | Train Loss: 0.10106 | Val Loss: 0.26310
+Epoch 100 | Train Loss: 0.09356 | Val Loss: 0.25793
+Epoch 120 | Train Loss: 0.08988 | Val Loss: 0.26684
+Early stopping at epoch 133
+
+Final Performance
+RMSE: 0.5041
+MAE : 0.3252
+R²  : 0.8288
+----------------------------------------
+Completed | RMSE: 0.504051 | MAE: 0.325228 | R2: 0.828777
+
+
+----------------------------------------------------------------------
+Config_2 COMPLETED
+Runs completed: 25
+Configuration results saved to:
+C:\solubility prediction system\results\Config_2_results.xlsx
+----------------------------------------------------------------------
+
+
+======================================================================
+STARTING Config_3
+Learning Rate : 0.0005
+Batch Size    : 64
+Epochs        : 300
+Seeds         : [42, 7, 99, 123, 2024]
+Expected runs : 25
+======================================================================
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape: (20111, 344)
+----------------------------------------------------------------------
+
+
+Running Config_3 | Exp1_MACCS_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.18201 | Val Loss: 0.30609
+Epoch 40 | Train Loss: 0.14452 | Val Loss: 0.29096
+Epoch 60 | Train Loss: 0.11459 | Val Loss: 0.28914
+Early stopping at epoch 68
+
+Final Performance
+RMSE: 0.5309
+MAE : 0.3479
+R²  : 0.8100
+----------------------------------------
+Completed | RMSE: 0.530915 | MAE: 0.347895 | R2: 0.810040
+
+
+Running Config_3 | Exp1_MACCS_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.17775 | Val Loss: 0.30973
+Epoch 40 | Train Loss: 0.14263 | Val Loss: 0.29866
+Epoch 60 | Train Loss: 0.11868 | Val Loss: 0.28850
+Epoch 80 | Train Loss: 0.10652 | Val Loss: 0.28627
+Early stopping at epoch 99
+
+Final Performance
+RMSE: 0.5250
+MAE : 0.3404
+R²  : 0.8143
+----------------------------------------
+Completed | RMSE: 0.524983 | MAE: 0.340368 | R2: 0.814262
+
+
+Running Config_3 | Exp1_MACCS_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.17686 | Val Loss: 0.31147
+Epoch 40 | Train Loss: 0.14217 | Val Loss: 0.28852
+Epoch 60 | Train Loss: 0.12598 | Val Loss: 0.28984
+Epoch 80 | Train Loss: 0.10870 | Val Loss: 0.28072
+Early stopping at epoch 99
+
+Final Performance
+RMSE: 0.5226
+MAE : 0.3390
+R²  : 0.8160
+----------------------------------------
+Completed | RMSE: 0.522587 | MAE: 0.339028 | R2: 0.815953
+
+
+Running Config_3 | Exp1_MACCS_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.17803 | Val Loss: 0.31905
+Epoch 40 | Train Loss: 0.14326 | Val Loss: 0.29765
+Epoch 60 | Train Loss: 0.12024 | Val Loss: 0.28138
+Epoch 80 | Train Loss: 0.10957 | Val Loss: 0.28272
+Early stopping at epoch 89
+
+Final Performance
+RMSE: 0.5272
+MAE : 0.3420
+R²  : 0.8127
+----------------------------------------
+Completed | RMSE: 0.527206 | MAE: 0.342000 | R2: 0.812685
+
+
+Running Config_3 | Exp1_MACCS_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.17576 | Val Loss: 0.30206
+Epoch 40 | Train Loss: 0.13334 | Val Loss: 0.28655
+Epoch 60 | Train Loss: 0.11943 | Val Loss: 0.29005
+Early stopping at epoch 78
+
+Final Performance
+RMSE: 0.5285
+MAE : 0.3438
+R²  : 0.8117
+----------------------------------------
+Completed | RMSE: 0.528545 | MAE: 0.343800 | R2: 0.811732
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape: (20111, 343)
+----------------------------------------------------------------------
+
+
+Running Config_3 | Exp2_MACCS_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.22461 | Val Loss: 0.36780
+Epoch 40 | Train Loss: 0.18955 | Val Loss: 0.34346
+Epoch 60 | Train Loss: 0.16661 | Val Loss: 0.33425
+Epoch 80 | Train Loss: 0.15489 | Val Loss: 0.33566
+Early stopping at epoch 91
+
+Final Performance
+RMSE: 0.5722
+MAE : 0.4016
+R²  : 0.7793
+----------------------------------------
+Completed | RMSE: 0.572231 | MAE: 0.401616 | R2: 0.779324
+
+
+Running Config_3 | Exp2_MACCS_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.22435 | Val Loss: 0.34537
+Epoch 40 | Train Loss: 0.19302 | Val Loss: 0.33848
+Epoch 60 | Train Loss: 0.17608 | Val Loss: 0.33232
+Early stopping at epoch 72
+
+Final Performance
+RMSE: 0.5691
+MAE : 0.4005
+R²  : 0.7818
+----------------------------------------
+Completed | RMSE: 0.569066 | MAE: 0.400501 | R2: 0.781759
+
+
+Running Config_3 | Exp2_MACCS_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.22969 | Val Loss: 0.35392
+Epoch 40 | Train Loss: 0.19300 | Val Loss: 0.35161
+Epoch 60 | Train Loss: 0.16654 | Val Loss: 0.34057
+Epoch 80 | Train Loss: 0.15523 | Val Loss: 0.33808
+Epoch 100 | Train Loss: 0.15056 | Val Loss: 0.33289
+Epoch 120 | Train Loss: 0.14902 | Val Loss: 0.33102
+Early stopping at epoch 123
+
+Final Performance
+RMSE: 0.5719
+MAE : 0.3987
+R²  : 0.7796
+----------------------------------------
+Completed | RMSE: 0.571926 | MAE: 0.398691 | R2: 0.779560
+
+
+Running Config_3 | Exp2_MACCS_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.22546 | Val Loss: 0.36338
+Epoch 40 | Train Loss: 0.19001 | Val Loss: 0.35031
+Epoch 60 | Train Loss: 0.16512 | Val Loss: 0.34286
+Epoch 80 | Train Loss: 0.15808 | Val Loss: 0.33919
+Early stopping at epoch 91
+
+Final Performance
+RMSE: 0.5790
+MAE : 0.4031
+R²  : 0.7741
+----------------------------------------
+Completed | RMSE: 0.578957 | MAE: 0.403129 | R2: 0.774106
+
+
+Running Config_3 | Exp2_MACCS_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.22640 | Val Loss: 0.36107
+Epoch 40 | Train Loss: 0.18181 | Val Loss: 0.33651
+Epoch 60 | Train Loss: 0.16711 | Val Loss: 0.33710
+Epoch 80 | Train Loss: 0.15706 | Val Loss: 0.33349
+Early stopping at epoch 99
+
+Final Performance
+RMSE: 0.5693
+MAE : 0.3998
+R²  : 0.7816
+----------------------------------------
+Completed | RMSE: 0.569314 | MAE: 0.399838 | R2: 0.781568
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape: (20111, 30)
+----------------------------------------------------------------------
+
+
+Running Config_3 | Exp3_RDKit_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.51727 | Val Loss: 0.46752
+Epoch 40 | Train Loss: 0.43894 | Val Loss: 0.42661
+Epoch 60 | Train Loss: 0.40652 | Val Loss: 0.38790
+Epoch 80 | Train Loss: 0.39092 | Val Loss: 0.37896
+Epoch 100 | Train Loss: 0.37775 | Val Loss: 0.37510
+Epoch 120 | Train Loss: 0.35740 | Val Loss: 0.36187
+Epoch 140 | Train Loss: 0.35160 | Val Loss: 0.36495
+Early stopping at epoch 152
+
+Final Performance
+RMSE: 0.5928
+MAE : 0.4208
+R²  : 0.7632
+----------------------------------------
+Completed | RMSE: 0.592813 | MAE: 0.420776 | R2: 0.763165
+
+
+Running Config_3 | Exp3_RDKit_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.51970 | Val Loss: 0.45386
+Epoch 40 | Train Loss: 0.43975 | Val Loss: 0.40456
+Epoch 60 | Train Loss: 0.40981 | Val Loss: 0.38670
+Epoch 80 | Train Loss: 0.37508 | Val Loss: 0.36765
+Epoch 100 | Train Loss: 0.36498 | Val Loss: 0.36157
+Early stopping at epoch 114
+
+Final Performance
+RMSE: 0.5995
+MAE : 0.4256
+R²  : 0.7578
+----------------------------------------
+Completed | RMSE: 0.599526 | MAE: 0.425637 | R2: 0.757770
+
+
+Running Config_3 | Exp3_RDKit_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.51669 | Val Loss: 0.45877
+Epoch 40 | Train Loss: 0.44192 | Val Loss: 0.40295
+Epoch 60 | Train Loss: 0.41212 | Val Loss: 0.37262
+Epoch 80 | Train Loss: 0.39402 | Val Loss: 0.37411
+Epoch 100 | Train Loss: 0.38123 | Val Loss: 0.36101
+Epoch 120 | Train Loss: 0.35475 | Val Loss: 0.35686
+Epoch 140 | Train Loss: 0.34039 | Val Loss: 0.34892
+Early stopping at epoch 157
+
+Final Performance
+RMSE: 0.5844
+MAE : 0.4107
+R²  : 0.7699
+----------------------------------------
+Completed | RMSE: 0.584379 | MAE: 0.410705 | R2: 0.769856
+
+
+Running Config_3 | Exp3_RDKit_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.51951 | Val Loss: 0.46638
+Epoch 40 | Train Loss: 0.44325 | Val Loss: 0.40366
+Epoch 60 | Train Loss: 0.40684 | Val Loss: 0.39646
+Epoch 80 | Train Loss: 0.37581 | Val Loss: 0.36691
+Epoch 100 | Train Loss: 0.35994 | Val Loss: 0.36539
+Epoch 120 | Train Loss: 0.35572 | Val Loss: 0.36320
+Epoch 140 | Train Loss: 0.34633 | Val Loss: 0.35917
+Epoch 160 | Train Loss: 0.34573 | Val Loss: 0.35838
+Early stopping at epoch 162
+
+Final Performance
+RMSE: 0.5926
+MAE : 0.4159
+R²  : 0.7633
+----------------------------------------
+Completed | RMSE: 0.592648 | MAE: 0.415902 | R2: 0.763296
+
+
+Running Config_3 | Exp3_RDKit_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.51229 | Val Loss: 0.45192
+Epoch 40 | Train Loss: 0.44049 | Val Loss: 0.40327
+Epoch 60 | Train Loss: 0.41176 | Val Loss: 0.39335
+Epoch 80 | Train Loss: 0.38883 | Val Loss: 0.37303
+Epoch 100 | Train Loss: 0.36214 | Val Loss: 0.36477
+Epoch 120 | Train Loss: 0.34966 | Val Loss: 0.35998
+Early stopping at epoch 139
+
+Final Performance
+RMSE: 0.5930
+MAE : 0.4199
+R²  : 0.7630
+----------------------------------------
+Completed | RMSE: 0.592987 | MAE: 0.419913 | R2: 0.763026
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape: (20111, 29)
+----------------------------------------------------------------------
+
+
+Running Config_3 | Exp4_RDKit_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.56061 | Val Loss: 0.50993
+Epoch 40 | Train Loss: 0.48064 | Val Loss: 0.45342
+Epoch 60 | Train Loss: 0.44712 | Val Loss: 0.44422
+Epoch 80 | Train Loss: 0.43129 | Val Loss: 0.42427
+Epoch 100 | Train Loss: 0.41765 | Val Loss: 0.41168
+Epoch 120 | Train Loss: 0.41187 | Val Loss: 0.40799
+Epoch 140 | Train Loss: 0.40234 | Val Loss: 0.41329
+Epoch 160 | Train Loss: 0.38337 | Val Loss: 0.40460
+Early stopping at epoch 171
+
+Final Performance
+RMSE: 0.6288
+MAE : 0.4583
+R²  : 0.7335
+----------------------------------------
+Completed | RMSE: 0.628794 | MAE: 0.458305 | R2: 0.733542
+
+
+Running Config_3 | Exp4_RDKit_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.55835 | Val Loss: 0.51125
+Epoch 40 | Train Loss: 0.48127 | Val Loss: 0.44705
+Epoch 60 | Train Loss: 0.43897 | Val Loss: 0.42261
+Epoch 80 | Train Loss: 0.42316 | Val Loss: 0.41082
+Epoch 100 | Train Loss: 0.40422 | Val Loss: 0.40759
+Epoch 120 | Train Loss: 0.39470 | Val Loss: 0.39814
+Early stopping at epoch 140
+
+Final Performance
+RMSE: 0.6314
+MAE : 0.4625
+R²  : 0.7314
+----------------------------------------
+Completed | RMSE: 0.631367 | MAE: 0.462541 | R2: 0.731357
+
+
+Running Config_3 | Exp4_RDKit_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.56113 | Val Loss: 0.52524
+Epoch 40 | Train Loss: 0.48323 | Val Loss: 0.44404
+Epoch 60 | Train Loss: 0.44680 | Val Loss: 0.43044
+Epoch 80 | Train Loss: 0.43255 | Val Loss: 0.42421
+Epoch 100 | Train Loss: 0.40345 | Val Loss: 0.41972
+Epoch 120 | Train Loss: 0.38972 | Val Loss: 0.42177
+Epoch 140 | Train Loss: 0.38644 | Val Loss: 0.40944
+Epoch 160 | Train Loss: 0.38051 | Val Loss: 0.41034
+Early stopping at epoch 164
+
+Final Performance
+RMSE: 0.6354
+MAE : 0.4618
+R²  : 0.7279
+----------------------------------------
+Completed | RMSE: 0.635380 | MAE: 0.461780 | R2: 0.727931
+
+
+Running Config_3 | Exp4_RDKit_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.55586 | Val Loss: 0.50681
+Epoch 40 | Train Loss: 0.48033 | Val Loss: 0.44832
+Epoch 60 | Train Loss: 0.44802 | Val Loss: 0.43508
+Epoch 80 | Train Loss: 0.42629 | Val Loss: 0.41988
+Epoch 100 | Train Loss: 0.41648 | Val Loss: 0.41948
+Early stopping at epoch 110
+
+Final Performance
+RMSE: 0.6408
+MAE : 0.4694
+R²  : 0.7232
+----------------------------------------
+Completed | RMSE: 0.640830 | MAE: 0.469385 | R2: 0.723244
+
+
+Running Config_3 | Exp4_RDKit_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.55963 | Val Loss: 0.50634
+Epoch 40 | Train Loss: 0.47850 | Val Loss: 0.45633
+Epoch 60 | Train Loss: 0.45241 | Val Loss: 0.43272
+Epoch 80 | Train Loss: 0.42874 | Val Loss: 0.41678
+Epoch 100 | Train Loss: 0.40253 | Val Loss: 0.40884
+Epoch 120 | Train Loss: 0.39818 | Val Loss: 0.40772
+Epoch 140 | Train Loss: 0.38185 | Val Loss: 0.40367
+Early stopping at epoch 155
+
+Final Performance
+RMSE: 0.6265
+MAE : 0.4557
+R²  : 0.7355
+----------------------------------------
+Completed | RMSE: 0.626507 | MAE: 0.455688 | R2: 0.735477
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape: (20111, 362)
+----------------------------------------------------------------------
+
+
+Running Config_3 | Exp5_Combined_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.16985 | Val Loss: 0.28710
+Epoch 40 | Train Loss: 0.12585 | Val Loss: 0.26739
+Epoch 60 | Train Loss: 0.11493 | Val Loss: 0.26728
+Epoch 80 | Train Loss: 0.10829 | Val Loss: 0.26464
+Epoch 100 | Train Loss: 0.09886 | Val Loss: 0.26113
+Early stopping at epoch 105
+
+Final Performance
+RMSE: 0.5095
+MAE : 0.3321
+R²  : 0.8251
+----------------------------------------
+Completed | RMSE: 0.509474 | MAE: 0.332078 | R2: 0.825074
+
+
+Running Config_3 | Exp5_Combined_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.16748 | Val Loss: 0.27361
+Epoch 40 | Train Loss: 0.13377 | Val Loss: 0.27247
+Epoch 60 | Train Loss: 0.11958 | Val Loss: 0.26596
+Epoch 80 | Train Loss: 0.10303 | Val Loss: 0.25963
+Epoch 100 | Train Loss: 0.09514 | Val Loss: 0.25738
+Epoch 120 | Train Loss: 0.09157 | Val Loss: 0.25564
+Early stopping at epoch 139
+
+Final Performance
+RMSE: 0.5029
+MAE : 0.3256
+R²  : 0.8295
+----------------------------------------
+Completed | RMSE: 0.502949 | MAE: 0.325643 | R2: 0.829525
+
+
+Running Config_3 | Exp5_Combined_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.16823 | Val Loss: 0.29319
+Epoch 40 | Train Loss: 0.13419 | Val Loss: 0.27775
+Epoch 60 | Train Loss: 0.12228 | Val Loss: 0.26823
+Epoch 80 | Train Loss: 0.10308 | Val Loss: 0.25982
+Epoch 100 | Train Loss: 0.09450 | Val Loss: 0.26076
+Early stopping at epoch 118
+
+Final Performance
+RMSE: 0.5065
+MAE : 0.3252
+R²  : 0.8271
+----------------------------------------
+Completed | RMSE: 0.506487 | MAE: 0.325156 | R2: 0.827119
+
+
+Running Config_3 | Exp5_Combined_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.16944 | Val Loss: 0.28542
+Epoch 40 | Train Loss: 0.13487 | Val Loss: 0.27448
+Early stopping at epoch 57
+
+Final Performance
+RMSE: 0.5136
+MAE : 0.3385
+R²  : 0.8223
+----------------------------------------
+Completed | RMSE: 0.513550 | MAE: 0.338457 | R2: 0.822263
+
+
+Running Config_3 | Exp5_Combined_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.16811 | Val Loss: 0.28576
+Epoch 40 | Train Loss: 0.12580 | Val Loss: 0.26145
+Epoch 60 | Train Loss: 0.10896 | Val Loss: 0.25320
+Early stopping at epoch 80
+
+Final Performance
+RMSE: 0.5035
+MAE : 0.3265
+R²  : 0.8291
+----------------------------------------
+Completed | RMSE: 0.503533 | MAE: 0.326529 | R2: 0.829129
+
+
+----------------------------------------------------------------------
+Config_3 COMPLETED
+Runs completed: 25
+Configuration results saved to:
+C:\solubility prediction system\results\Config_3_results.xlsx
+----------------------------------------------------------------------
+
+
+======================================================================
+STARTING Config_4
+Learning Rate : 0.0001
+Batch Size    : 64
+Epochs        : 300
+Seeds         : [42, 7, 99, 123, 2024]
+Expected runs : 25
+======================================================================
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape: (20111, 344)
+----------------------------------------------------------------------
+
+
+Running Config_4 | Exp1_MACCS_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.23077 | Val Loss: 0.31150
+Epoch 40 | Train Loss: 0.17396 | Val Loss: 0.29055
+Epoch 60 | Train Loss: 0.14582 | Val Loss: 0.28372
+Epoch 80 | Train Loss: 0.13420 | Val Loss: 0.28879
+Epoch 100 | Train Loss: 0.12742 | Val Loss: 0.29085
+Epoch 120 | Train Loss: 0.12324 | Val Loss: 0.27904
+Epoch 140 | Train Loss: 0.12123 | Val Loss: 0.28163
+Early stopping at epoch 144
+
+Final Performance
+RMSE: 0.5261
+MAE : 0.3411
+R²  : 0.8135
+----------------------------------------
+Completed | RMSE: 0.526063 | MAE: 0.341082 | R2: 0.813497
+
+
+Running Config_4 | Exp1_MACCS_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.22745 | Val Loss: 0.32705
+Epoch 40 | Train Loss: 0.17310 | Val Loss: 0.31377
+Epoch 60 | Train Loss: 0.15050 | Val Loss: 0.30166
+Epoch 80 | Train Loss: 0.12954 | Val Loss: 0.29197
+Epoch 100 | Train Loss: 0.12484 | Val Loss: 0.27599
+Epoch 120 | Train Loss: 0.12365 | Val Loss: 0.27731
+Epoch 140 | Train Loss: 0.12289 | Val Loss: 0.28268
+Early stopping at epoch 144
+
+Final Performance
+RMSE: 0.5228
+MAE : 0.3417
+R²  : 0.8158
+----------------------------------------
+Completed | RMSE: 0.522773 | MAE: 0.341750 | R2: 0.815822
+
+
+Running Config_4 | Exp1_MACCS_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.22593 | Val Loss: 0.31363
+Epoch 40 | Train Loss: 0.17095 | Val Loss: 0.29265
+Epoch 60 | Train Loss: 0.14753 | Val Loss: 0.28918
+Early stopping at epoch 74
+
+Final Performance
+RMSE: 0.5259
+MAE : 0.3502
+R²  : 0.8136
+----------------------------------------
+Completed | RMSE: 0.525867 | MAE: 0.350249 | R2: 0.813636
+
+
+Running Config_4 | Exp1_MACCS_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.22871 | Val Loss: 0.32233
+Epoch 40 | Train Loss: 0.17284 | Val Loss: 0.29712
+Epoch 60 | Train Loss: 0.14583 | Val Loss: 0.27928
+Early stopping at epoch 80
+
+Final Performance
+RMSE: 0.5288
+MAE : 0.3519
+R²  : 0.8115
+----------------------------------------
+Completed | RMSE: 0.528850 | MAE: 0.351947 | R2: 0.811515
+
+
+Running Config_4 | Exp1_MACCS_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.22400 | Val Loss: 0.30698
+Epoch 40 | Train Loss: 0.17314 | Val Loss: 0.29362
+Epoch 60 | Train Loss: 0.14653 | Val Loss: 0.29481
+Epoch 80 | Train Loss: 0.13462 | Val Loss: 0.28738
+Epoch 100 | Train Loss: 0.12717 | Val Loss: 0.28664
+Early stopping at epoch 116
+
+Final Performance
+RMSE: 0.5314
+MAE : 0.3465
+R²  : 0.8097
+----------------------------------------
+Completed | RMSE: 0.531390 | MAE: 0.346511 | R2: 0.809700
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape: (20111, 343)
+----------------------------------------------------------------------
+
+
+Running Config_4 | Exp2_MACCS_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.27051 | Val Loss: 0.37364
+Epoch 40 | Train Loss: 0.21701 | Val Loss: 0.34762
+Epoch 60 | Train Loss: 0.19541 | Val Loss: 0.33716
+Epoch 80 | Train Loss: 0.18441 | Val Loss: 0.33363
+Epoch 100 | Train Loss: 0.17871 | Val Loss: 0.34520
+Early stopping at epoch 105
+
+Final Performance
+RMSE: 0.5739
+MAE : 0.4023
+R²  : 0.7780
+----------------------------------------
+Completed | RMSE: 0.573920 | MAE: 0.402331 | R2: 0.778019
+
+
+Running Config_4 | Exp2_MACCS_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.27415 | Val Loss: 0.36116
+Epoch 40 | Train Loss: 0.22192 | Val Loss: 0.35478
+Epoch 60 | Train Loss: 0.19750 | Val Loss: 0.33681
+Epoch 80 | Train Loss: 0.18047 | Val Loss: 0.33622
+Epoch 100 | Train Loss: 0.17310 | Val Loss: 0.32698
+Early stopping at epoch 118
+
+Final Performance
+RMSE: 0.5686
+MAE : 0.3989
+R²  : 0.7821
+----------------------------------------
+Completed | RMSE: 0.568568 | MAE: 0.398917 | R2: 0.782141
+
+
+Running Config_4 | Exp2_MACCS_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.27549 | Val Loss: 0.37887
+Epoch 40 | Train Loss: 0.21458 | Val Loss: 0.36272
+Epoch 60 | Train Loss: 0.19907 | Val Loss: 0.35059
+Early stopping at epoch 76
+
+Final Performance
+RMSE: 0.5817
+MAE : 0.4092
+R²  : 0.7719
+----------------------------------------
+Completed | RMSE: 0.581732 | MAE: 0.409207 | R2: 0.771935
+
+
+Running Config_4 | Exp2_MACCS_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.27356 | Val Loss: 0.36952
+Epoch 40 | Train Loss: 0.22036 | Val Loss: 0.35278
+Epoch 60 | Train Loss: 0.19467 | Val Loss: 0.33966
+Epoch 80 | Train Loss: 0.18997 | Val Loss: 0.33833
+Early stopping at epoch 92
+
+Final Performance
+RMSE: 0.5756
+MAE : 0.4047
+R²  : 0.7767
+----------------------------------------
+Completed | RMSE: 0.575560 | MAE: 0.404713 | R2: 0.776749
+
+
+Running Config_4 | Exp2_MACCS_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.27193 | Val Loss: 0.38392
+Epoch 40 | Train Loss: 0.22021 | Val Loss: 0.35146
+Epoch 60 | Train Loss: 0.19753 | Val Loss: 0.35068
+Epoch 80 | Train Loss: 0.17960 | Val Loss: 0.33742
+Epoch 100 | Train Loss: 0.16964 | Val Loss: 0.33136
+Early stopping at epoch 101
+
+Final Performance
+RMSE: 0.5743
+MAE : 0.4022
+R²  : 0.7777
+----------------------------------------
+Completed | RMSE: 0.574342 | MAE: 0.402189 | R2: 0.777693
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape: (20111, 30)
+----------------------------------------------------------------------
+
+
+Running Config_4 | Exp3_RDKit_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.67190 | Val Loss: 0.59039
+Epoch 40 | Train Loss: 0.56295 | Val Loss: 0.50198
+Epoch 60 | Train Loss: 0.50172 | Val Loss: 0.44891
+Epoch 80 | Train Loss: 0.46217 | Val Loss: 0.41887
+Epoch 100 | Train Loss: 0.43269 | Val Loss: 0.41323
+Epoch 120 | Train Loss: 0.41175 | Val Loss: 0.39929
+Epoch 140 | Train Loss: 0.39698 | Val Loss: 0.39867
+Epoch 160 | Train Loss: 0.38974 | Val Loss: 0.38037
+Epoch 180 | Train Loss: 0.38428 | Val Loss: 0.38255
+Epoch 200 | Train Loss: 0.38106 | Val Loss: 0.37927
+Early stopping at epoch 210
+
+Final Performance
+RMSE: 0.6115
+MAE : 0.4417
+R²  : 0.7480
+----------------------------------------
+Completed | RMSE: 0.611535 | MAE: 0.441717 | R2: 0.747968
+
+
+Running Config_4 | Exp3_RDKit_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.67704 | Val Loss: 0.58954
+Epoch 40 | Train Loss: 0.56660 | Val Loss: 0.50454
+Epoch 60 | Train Loss: 0.50024 | Val Loss: 0.45236
+Epoch 80 | Train Loss: 0.46323 | Val Loss: 0.42520
+Epoch 100 | Train Loss: 0.43639 | Val Loss: 0.40517
+Epoch 120 | Train Loss: 0.41810 | Val Loss: 0.39966
+Epoch 140 | Train Loss: 0.40172 | Val Loss: 0.39021
+Epoch 160 | Train Loss: 0.38164 | Val Loss: 0.37200
+Early stopping at epoch 176
+
+Final Performance
+RMSE: 0.6073
+MAE : 0.4385
+R²  : 0.7514
+----------------------------------------
+Completed | RMSE: 0.607341 | MAE: 0.438504 | R2: 0.751414
+
+
+Running Config_4 | Exp3_RDKit_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.67290 | Val Loss: 0.57682
+Epoch 40 | Train Loss: 0.56629 | Val Loss: 0.49621
+Epoch 60 | Train Loss: 0.50346 | Val Loss: 0.43902
+Epoch 80 | Train Loss: 0.46375 | Val Loss: 0.42232
+Epoch 100 | Train Loss: 0.43540 | Val Loss: 0.40332
+Epoch 120 | Train Loss: 0.41696 | Val Loss: 0.38999
+Epoch 140 | Train Loss: 0.39855 | Val Loss: 0.38268
+Epoch 160 | Train Loss: 0.38023 | Val Loss: 0.36275
+Epoch 180 | Train Loss: 0.37167 | Val Loss: 0.36668
+Epoch 200 | Train Loss: 0.36810 | Val Loss: 0.36199
+Epoch 220 | Train Loss: 0.36619 | Val Loss: 0.36003
+Epoch 240 | Train Loss: 0.36609 | Val Loss: 0.36427
+Early stopping at epoch 248
+
+Final Performance
+RMSE: 0.5960
+MAE : 0.4274
+R²  : 0.7606
+----------------------------------------
+Completed | RMSE: 0.596036 | MAE: 0.427419 | R2: 0.760582
+
+
+Running Config_4 | Exp3_RDKit_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.67643 | Val Loss: 0.60140
+Epoch 40 | Train Loss: 0.56871 | Val Loss: 0.50833
+Epoch 60 | Train Loss: 0.50309 | Val Loss: 0.45822
+Epoch 80 | Train Loss: 0.46260 | Val Loss: 0.42390
+Epoch 100 | Train Loss: 0.43505 | Val Loss: 0.41212
+Epoch 120 | Train Loss: 0.41531 | Val Loss: 0.40136
+Epoch 140 | Train Loss: 0.39403 | Val Loss: 0.37794
+Epoch 160 | Train Loss: 0.38814 | Val Loss: 0.38219
+Epoch 180 | Train Loss: 0.37976 | Val Loss: 0.37292
+Epoch 200 | Train Loss: 0.37796 | Val Loss: 0.37127
+Early stopping at epoch 212
+
+Final Performance
+RMSE: 0.6061
+MAE : 0.4366
+R²  : 0.7524
+----------------------------------------
+Completed | RMSE: 0.606105 | MAE: 0.436550 | R2: 0.752425
+
+
+Running Config_4 | Exp3_RDKit_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.67536 | Val Loss: 0.59165
+Epoch 40 | Train Loss: 0.56351 | Val Loss: 0.49597
+Epoch 60 | Train Loss: 0.50241 | Val Loss: 0.45822
+Epoch 80 | Train Loss: 0.46160 | Val Loss: 0.42108
+Epoch 100 | Train Loss: 0.43440 | Val Loss: 0.40512
+Epoch 120 | Train Loss: 0.41141 | Val Loss: 0.39203
+Epoch 140 | Train Loss: 0.40026 | Val Loss: 0.38590
+Epoch 160 | Train Loss: 0.38933 | Val Loss: 0.37939
+Epoch 180 | Train Loss: 0.38399 | Val Loss: 0.36601
+Epoch 200 | Train Loss: 0.37072 | Val Loss: 0.36179
+Epoch 220 | Train Loss: 0.36848 | Val Loss: 0.36036
+Early stopping at epoch 233
+
+Final Performance
+RMSE: 0.5963
+MAE : 0.4263
+R²  : 0.7603
+----------------------------------------
+Completed | RMSE: 0.596336 | MAE: 0.426257 | R2: 0.760341
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape: (20111, 29)
+----------------------------------------------------------------------
+
+
+Running Config_4 | Exp4_RDKit_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.70784 | Val Loss: 0.63575
+Epoch 40 | Train Loss: 0.59927 | Val Loss: 0.55171
+Epoch 60 | Train Loss: 0.54055 | Val Loss: 0.50832
+Epoch 80 | Train Loss: 0.50402 | Val Loss: 0.47913
+Epoch 100 | Train Loss: 0.47234 | Val Loss: 0.45413
+Epoch 120 | Train Loss: 0.45575 | Val Loss: 0.44558
+Epoch 140 | Train Loss: 0.44107 | Val Loss: 0.44509
+Epoch 160 | Train Loss: 0.43198 | Val Loss: 0.42752
+Epoch 180 | Train Loss: 0.41635 | Val Loss: 0.42764
+Epoch 200 | Train Loss: 0.40606 | Val Loss: 0.41324
+Epoch 220 | Train Loss: 0.40339 | Val Loss: 0.44028
+Early stopping at epoch 231
+
+Final Performance
+RMSE: 0.6428
+MAE : 0.4702
+R²  : 0.7215
+----------------------------------------
+Completed | RMSE: 0.642805 | MAE: 0.470225 | R2: 0.721535
+
+
+Running Config_4 | Exp4_RDKit_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.70692 | Val Loss: 0.62702
+Epoch 40 | Train Loss: 0.60255 | Val Loss: 0.53291
+Epoch 60 | Train Loss: 0.54370 | Val Loss: 0.48650
+Epoch 80 | Train Loss: 0.50198 | Val Loss: 0.46760
+Epoch 100 | Train Loss: 0.47175 | Val Loss: 0.45353
+Epoch 120 | Train Loss: 0.45467 | Val Loss: 0.43545
+Epoch 140 | Train Loss: 0.43446 | Val Loss: 0.42793
+Epoch 160 | Train Loss: 0.42546 | Val Loss: 0.42322
+Epoch 180 | Train Loss: 0.42625 | Val Loss: 0.41904
+Epoch 200 | Train Loss: 0.41208 | Val Loss: 0.41355
+Epoch 220 | Train Loss: 0.41395 | Val Loss: 0.41826
+Early stopping at epoch 234
+
+Final Performance
+RMSE: 0.6416
+MAE : 0.4723
+R²  : 0.7226
+----------------------------------------
+Completed | RMSE: 0.641552 | MAE: 0.472287 | R2: 0.722620
+
+
+Running Config_4 | Exp4_RDKit_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.70684 | Val Loss: 0.62241
+Epoch 40 | Train Loss: 0.60102 | Val Loss: 0.53386
+Epoch 60 | Train Loss: 0.53591 | Val Loss: 0.48921
+Epoch 80 | Train Loss: 0.49969 | Val Loss: 0.46029
+Epoch 100 | Train Loss: 0.47209 | Val Loss: 0.44883
+Epoch 120 | Train Loss: 0.45191 | Val Loss: 0.44530
+Epoch 140 | Train Loss: 0.43743 | Val Loss: 0.43156
+Epoch 160 | Train Loss: 0.42144 | Val Loss: 0.42248
+Early stopping at epoch 164
+
+Final Performance
+RMSE: 0.6450
+MAE : 0.4761
+R²  : 0.7197
+----------------------------------------
+Completed | RMSE: 0.644960 | MAE: 0.476140 | R2: 0.719665
+
+
+Running Config_4 | Exp4_RDKit_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.70260 | Val Loss: 0.61703
+Epoch 40 | Train Loss: 0.59623 | Val Loss: 0.52545
+Epoch 60 | Train Loss: 0.53798 | Val Loss: 0.48976
+Epoch 80 | Train Loss: 0.49677 | Val Loss: 0.46254
+Epoch 100 | Train Loss: 0.47349 | Val Loss: 0.44722
+Epoch 120 | Train Loss: 0.45219 | Val Loss: 0.44506
+Epoch 140 | Train Loss: 0.43760 | Val Loss: 0.43030
+Epoch 160 | Train Loss: 0.42357 | Val Loss: 0.43096
+Epoch 180 | Train Loss: 0.42111 | Val Loss: 0.42412
+Early stopping at epoch 187
+
+Final Performance
+RMSE: 0.6505
+MAE : 0.4768
+R²  : 0.7148
+----------------------------------------
+Completed | RMSE: 0.650541 | MAE: 0.476768 | R2: 0.714792
+
+
+Running Config_4 | Exp4_RDKit_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.71251 | Val Loss: 0.62033
+Epoch 40 | Train Loss: 0.60268 | Val Loss: 0.54848
+Epoch 60 | Train Loss: 0.54541 | Val Loss: 0.48908
+Epoch 80 | Train Loss: 0.50772 | Val Loss: 0.46845
+Epoch 100 | Train Loss: 0.47569 | Val Loss: 0.44861
+Epoch 120 | Train Loss: 0.45786 | Val Loss: 0.44035
+Epoch 140 | Train Loss: 0.44101 | Val Loss: 0.43771
+Epoch 160 | Train Loss: 0.43202 | Val Loss: 0.42220
+Epoch 180 | Train Loss: 0.41695 | Val Loss: 0.41556
+Epoch 200 | Train Loss: 0.41025 | Val Loss: 0.41105
+Early stopping at epoch 215
+
+Final Performance
+RMSE: 0.6379
+MAE : 0.4683
+R²  : 0.7258
+----------------------------------------
+Completed | RMSE: 0.637882 | MAE: 0.468308 | R2: 0.725784
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape: (20111, 362)
+----------------------------------------------------------------------
+
+
+Running Config_4 | Exp5_Combined_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.21574 | Val Loss: 0.29805
+Epoch 40 | Train Loss: 0.16420 | Val Loss: 0.28685
+Epoch 60 | Train Loss: 0.13651 | Val Loss: 0.26267
+Early stopping at epoch 77
+
+Final Performance
+RMSE: 0.5091
+MAE : 0.3344
+R²  : 0.8253
+----------------------------------------
+Completed | RMSE: 0.509121 | MAE: 0.334396 | R2: 0.825316
+
+
+Running Config_4 | Exp5_Combined_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.21320 | Val Loss: 0.29095
+Epoch 40 | Train Loss: 0.16208 | Val Loss: 0.27563
+Epoch 60 | Train Loss: 0.14133 | Val Loss: 0.27184
+Epoch 80 | Train Loss: 0.12639 | Val Loss: 0.26703
+Early stopping at epoch 91
+
+Final Performance
+RMSE: 0.5113
+MAE : 0.3345
+R²  : 0.8238
+----------------------------------------
+Completed | RMSE: 0.511253 | MAE: 0.334527 | R2: 0.823850
+
+
+Running Config_4 | Exp5_Combined_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.21456 | Val Loss: 0.29339
+Epoch 40 | Train Loss: 0.16354 | Val Loss: 0.27603
+Epoch 60 | Train Loss: 0.13836 | Val Loss: 0.26248
+Early stopping at epoch 67
+
+Final Performance
+RMSE: 0.5125
+MAE : 0.3385
+R²  : 0.8230
+----------------------------------------
+Completed | RMSE: 0.512506 | MAE: 0.338535 | R2: 0.822985
+
+
+Running Config_4 | Exp5_Combined_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.21265 | Val Loss: 0.29167
+Epoch 40 | Train Loss: 0.16294 | Val Loss: 0.27834
+Epoch 60 | Train Loss: 0.13459 | Val Loss: 0.26829
+Epoch 80 | Train Loss: 0.12361 | Val Loss: 0.26088
+Early stopping at epoch 100
+
+Final Performance
+RMSE: 0.5109
+MAE : 0.3324
+R²  : 0.8241
+----------------------------------------
+Completed | RMSE: 0.510909 | MAE: 0.332393 | R2: 0.824086
+
+
+Running Config_4 | Exp5_Combined_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.21277 | Val Loss: 0.29241
+Epoch 40 | Train Loss: 0.15904 | Val Loss: 0.27092
+Epoch 60 | Train Loss: 0.14433 | Val Loss: 0.26334
+Epoch 80 | Train Loss: 0.13328 | Val Loss: 0.26895
+Epoch 100 | Train Loss: 0.12505 | Val Loss: 0.26083
+Early stopping at epoch 102
+
+Final Performance
+RMSE: 0.5085
+MAE : 0.3313
+R²  : 0.8258
+----------------------------------------
+Completed | RMSE: 0.508482 | MAE: 0.331298 | R2: 0.825754
+
+
+----------------------------------------------------------------------
+Config_4 COMPLETED
+Runs completed: 25
+Configuration results saved to:
+C:\solubility prediction system\results\Config_4_results.xlsx
+----------------------------------------------------------------------
+
+
+======================================================================
+STARTING Config_5
+Learning Rate : 0.0001
+Batch Size    : 32
+Epochs        : 300
+Seeds         : [42, 7, 99, 123, 2024]
+Expected runs : 25
+======================================================================
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp1_MACCS_with_Temp
+Train shape: (80872, 344)
+Test shape: (20111, 344)
+----------------------------------------------------------------------
+
+
+Running Config_5 | Exp1_MACCS_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.25509 | Val Loss: 0.31352
+Epoch 40 | Train Loss: 0.20286 | Val Loss: 0.29881
+Epoch 60 | Train Loss: 0.16996 | Val Loss: 0.29171
+Early stopping at epoch 68
+
+Final Performance
+RMSE: 0.5257
+MAE : 0.3534
+R²  : 0.8138
+----------------------------------------
+Completed | RMSE: 0.525665 | MAE: 0.353428 | R2: 0.813779
+
+
+Running Config_5 | Exp1_MACCS_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.24976 | Val Loss: 0.31043
+Epoch 40 | Train Loss: 0.19172 | Val Loss: 0.30931
+Epoch 60 | Train Loss: 0.17342 | Val Loss: 0.29371
+Epoch 80 | Train Loss: 0.16492 | Val Loss: 0.30182
+Early stopping at epoch 82
+
+Final Performance
+RMSE: 0.5298
+MAE : 0.3495
+R²  : 0.8108
+----------------------------------------
+Completed | RMSE: 0.529812 | MAE: 0.349460 | R2: 0.810829
+
+
+Running Config_5 | Exp1_MACCS_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.25217 | Val Loss: 0.32076
+Epoch 40 | Train Loss: 0.20065 | Val Loss: 0.28904
+Early stopping at epoch 58
+
+Final Performance
+RMSE: 0.5335
+MAE : 0.3615
+R²  : 0.8082
+----------------------------------------
+Completed | RMSE: 0.533529 | MAE: 0.361499 | R2: 0.808165
+
+
+Running Config_5 | Exp1_MACCS_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.24648 | Val Loss: 0.32466
+Epoch 40 | Train Loss: 0.20318 | Val Loss: 0.30944
+Epoch 60 | Train Loss: 0.18233 | Val Loss: 0.29849
+Epoch 80 | Train Loss: 0.15769 | Val Loss: 0.28993
+Early stopping at epoch 83
+
+Final Performance
+RMSE: 0.5350
+MAE : 0.3551
+R²  : 0.8071
+----------------------------------------
+Completed | RMSE: 0.534964 | MAE: 0.355140 | R2: 0.807132
+
+
+Running Config_5 | Exp1_MACCS_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.24763 | Val Loss: 0.31341
+Epoch 40 | Train Loss: 0.20124 | Val Loss: 0.29332
+Epoch 60 | Train Loss: 0.17349 | Val Loss: 0.29229
+Epoch 80 | Train Loss: 0.15858 | Val Loss: 0.29524
+Early stopping at epoch 82
+
+Final Performance
+RMSE: 0.5333
+MAE : 0.3533
+R²  : 0.8083
+----------------------------------------
+Completed | RMSE: 0.533321 | MAE: 0.353299 | R2: 0.808314
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp2_MACCS_no_Temp
+Train shape: (80872, 343)
+Test shape: (20111, 343)
+----------------------------------------------------------------------
+
+
+Running Config_5 | Exp2_MACCS_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.29583 | Val Loss: 0.36523
+Epoch 40 | Train Loss: 0.23539 | Val Loss: 0.34786
+Epoch 60 | Train Loss: 0.21905 | Val Loss: 0.34017
+Early stopping at epoch 77
+
+Final Performance
+RMSE: 0.5762
+MAE : 0.4068
+R²  : 0.7763
+----------------------------------------
+Completed | RMSE: 0.576200 | MAE: 0.406754 | R2: 0.776253
+
+
+Running Config_5 | Exp2_MACCS_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.29538 | Val Loss: 0.35936
+Epoch 40 | Train Loss: 0.24447 | Val Loss: 0.36382
+Epoch 60 | Train Loss: 0.22373 | Val Loss: 0.34065
+Early stopping at epoch 72
+
+Final Performance
+RMSE: 0.5718
+MAE : 0.4061
+R²  : 0.7797
+----------------------------------------
+Completed | RMSE: 0.571786 | MAE: 0.406054 | R2: 0.779667
+
+
+Running Config_5 | Exp2_MACCS_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.29861 | Val Loss: 0.37528
+Epoch 40 | Train Loss: 0.24904 | Val Loss: 0.35964
+Epoch 60 | Train Loss: 0.21907 | Val Loss: 0.35624
+Early stopping at epoch 76
+
+Final Performance
+RMSE: 0.5766
+MAE : 0.4084
+R²  : 0.7759
+----------------------------------------
+Completed | RMSE: 0.576591 | MAE: 0.408415 | R2: 0.775949
+
+
+Running Config_5 | Exp2_MACCS_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.29617 | Val Loss: 0.36375
+Epoch 40 | Train Loss: 0.24279 | Val Loss: 0.37773
+Epoch 60 | Train Loss: 0.22332 | Val Loss: 0.34464
+Epoch 80 | Train Loss: 0.21896 | Val Loss: 0.33380
+Early stopping at epoch 87
+
+Final Performance
+RMSE: 0.5732
+MAE : 0.4064
+R²  : 0.7785
+----------------------------------------
+Completed | RMSE: 0.573249 | MAE: 0.406373 | R2: 0.778539
+
+
+Running Config_5 | Exp2_MACCS_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.29537 | Val Loss: 0.38747
+Epoch 40 | Train Loss: 0.24799 | Val Loss: 0.34694
+Epoch 60 | Train Loss: 0.21695 | Val Loss: 0.35011
+Early stopping at epoch 65
+
+Final Performance
+RMSE: 0.5828
+MAE : 0.4147
+R²  : 0.7711
+----------------------------------------
+Completed | RMSE: 0.582800 | MAE: 0.414721 | R2: 0.771097
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp3_RDKit_with_Temp
+Train shape: (80872, 30)
+Test shape: (20111, 30)
+----------------------------------------------------------------------
+
+
+Running Config_5 | Exp3_RDKit_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.68088 | Val Loss: 0.58786
+Epoch 40 | Train Loss: 0.59330 | Val Loss: 0.53551
+Epoch 60 | Train Loss: 0.54430 | Val Loss: 0.47108
+Epoch 80 | Train Loss: 0.51100 | Val Loss: 0.44091
+Epoch 100 | Train Loss: 0.48509 | Val Loss: 0.44907
+Epoch 120 | Train Loss: 0.47086 | Val Loss: 0.42991
+Early stopping at epoch 122
+
+Final Performance
+RMSE: 0.6368
+MAE : 0.4709
+R²  : 0.7268
+----------------------------------------
+Completed | RMSE: 0.636753 | MAE: 0.470933 | R2: 0.726754
+
+
+Running Config_5 | Exp3_RDKit_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.68270 | Val Loss: 0.58335
+Epoch 40 | Train Loss: 0.59204 | Val Loss: 0.50578
+Epoch 60 | Train Loss: 0.54100 | Val Loss: 0.45040
+Epoch 80 | Train Loss: 0.50787 | Val Loss: 0.43111
+Epoch 100 | Train Loss: 0.48495 | Val Loss: 0.41277
+Epoch 120 | Train Loss: 0.46713 | Val Loss: 0.41138
+Epoch 140 | Train Loss: 0.45354 | Val Loss: 0.40366
+Epoch 160 | Train Loss: 0.45035 | Val Loss: 0.38584
+Epoch 180 | Train Loss: 0.44801 | Val Loss: 0.40320
+Epoch 200 | Train Loss: 0.44670 | Val Loss: 0.39621
+Early stopping at epoch 203
+
+Final Performance
+RMSE: 0.6197
+MAE : 0.4545
+R²  : 0.7412
+----------------------------------------
+Completed | RMSE: 0.619721 | MAE: 0.454540 | R2: 0.741176
+
+
+Running Config_5 | Exp3_RDKit_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.68733 | Val Loss: 0.57836
+Epoch 40 | Train Loss: 0.59385 | Val Loss: 0.53994
+Epoch 60 | Train Loss: 0.53781 | Val Loss: 0.46252
+Epoch 80 | Train Loss: 0.51065 | Val Loss: 0.45572
+Epoch 100 | Train Loss: 0.48570 | Val Loss: 0.44381
+Epoch 120 | Train Loss: 0.47384 | Val Loss: 0.42395
+Epoch 140 | Train Loss: 0.46410 | Val Loss: 0.41757
+Early stopping at epoch 149
+
+Final Performance
+RMSE: 0.6281
+MAE : 0.4591
+R²  : 0.7341
+----------------------------------------
+Completed | RMSE: 0.628143 | MAE: 0.459089 | R2: 0.734094
+
+
+Running Config_5 | Exp3_RDKit_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.69044 | Val Loss: 0.59495
+Epoch 40 | Train Loss: 0.59900 | Val Loss: 0.50990
+Epoch 60 | Train Loss: 0.54700 | Val Loss: 0.46915
+Epoch 80 | Train Loss: 0.51653 | Val Loss: 0.43178
+Epoch 100 | Train Loss: 0.48982 | Val Loss: 0.42419
+Epoch 120 | Train Loss: 0.47781 | Val Loss: 0.41356
+Epoch 140 | Train Loss: 0.45657 | Val Loss: 0.40364
+Epoch 160 | Train Loss: 0.45465 | Val Loss: 0.39960
+Early stopping at epoch 169
+
+Final Performance
+RMSE: 0.6226
+MAE : 0.4581
+R²  : 0.7388
+----------------------------------------
+Completed | RMSE: 0.622599 | MAE: 0.458145 | R2: 0.738767
+
+
+Running Config_5 | Exp3_RDKit_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.68466 | Val Loss: 0.59129
+Epoch 40 | Train Loss: 0.59055 | Val Loss: 0.48333
+Epoch 60 | Train Loss: 0.53651 | Val Loss: 0.48230
+Epoch 80 | Train Loss: 0.49932 | Val Loss: 0.42507
+Epoch 100 | Train Loss: 0.48375 | Val Loss: 0.41840
+Epoch 120 | Train Loss: 0.47206 | Val Loss: 0.42614
+Epoch 140 | Train Loss: 0.46592 | Val Loss: 0.40699
+Epoch 160 | Train Loss: 0.45846 | Val Loss: 0.40996
+Early stopping at epoch 163
+
+Final Performance
+RMSE: 0.6281
+MAE : 0.4597
+R²  : 0.7342
+----------------------------------------
+Completed | RMSE: 0.628074 | MAE: 0.459702 | R2: 0.734152
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp4_RDKit_no_Temp
+Train shape: (80872, 29)
+Test shape: (20111, 29)
+----------------------------------------------------------------------
+
+
+Running Config_5 | Exp4_RDKit_no_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.71970 | Val Loss: 0.63787
+Epoch 40 | Train Loss: 0.63102 | Val Loss: 0.54421
+Epoch 60 | Train Loss: 0.57727 | Val Loss: 0.50610
+Epoch 80 | Train Loss: 0.55087 | Val Loss: 0.47958
+Epoch 100 | Train Loss: 0.52983 | Val Loss: 0.45602
+Epoch 120 | Train Loss: 0.51283 | Val Loss: 0.45183
+Epoch 140 | Train Loss: 0.49827 | Val Loss: 0.45444
+Epoch 160 | Train Loss: 0.48258 | Val Loss: 0.43569
+Epoch 180 | Train Loss: 0.48066 | Val Loss: 0.43684
+Epoch 200 | Train Loss: 0.48037 | Val Loss: 0.42645
+Early stopping at epoch 215
+
+Final Performance
+RMSE: 0.6514
+MAE : 0.4802
+R²  : 0.7140
+----------------------------------------
+Completed | RMSE: 0.651422 | MAE: 0.480183 | R2: 0.714020
+
+
+Running Config_5 | Exp4_RDKit_no_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.72208 | Val Loss: 0.62481
+Epoch 40 | Train Loss: 0.62781 | Val Loss: 0.53913
+Epoch 60 | Train Loss: 0.57964 | Val Loss: 0.50259
+Epoch 80 | Train Loss: 0.55144 | Val Loss: 0.47837
+Epoch 100 | Train Loss: 0.52800 | Val Loss: 0.46366
+Epoch 120 | Train Loss: 0.50719 | Val Loss: 0.45070
+Epoch 140 | Train Loss: 0.49631 | Val Loss: 0.44600
+Epoch 160 | Train Loss: 0.48858 | Val Loss: 0.44806
+Early stopping at epoch 164
+
+Final Performance
+RMSE: 0.6616
+MAE : 0.4936
+R²  : 0.7050
+----------------------------------------
+Completed | RMSE: 0.661643 | MAE: 0.493626 | R2: 0.704975
+
+
+Running Config_5 | Exp4_RDKit_no_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.72066 | Val Loss: 0.62455
+Epoch 40 | Train Loss: 0.63072 | Val Loss: 0.53791
+Epoch 60 | Train Loss: 0.57758 | Val Loss: 0.50001
+Epoch 80 | Train Loss: 0.54617 | Val Loss: 0.48591
+Epoch 100 | Train Loss: 0.53016 | Val Loss: 0.47734
+Epoch 120 | Train Loss: 0.50602 | Val Loss: 0.46000
+Epoch 140 | Train Loss: 0.49629 | Val Loss: 0.44472
+Epoch 160 | Train Loss: 0.48375 | Val Loss: 0.44051
+Early stopping at epoch 168
+
+Final Performance
+RMSE: 0.6568
+MAE : 0.4879
+R²  : 0.7092
+----------------------------------------
+Completed | RMSE: 0.656846 | MAE: 0.487905 | R2: 0.709237
+
+
+Running Config_5 | Exp4_RDKit_no_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.72152 | Val Loss: 0.63615
+Epoch 40 | Train Loss: 0.62785 | Val Loss: 0.55014
+Epoch 60 | Train Loss: 0.58036 | Val Loss: 0.50704
+Epoch 80 | Train Loss: 0.54644 | Val Loss: 0.47594
+Epoch 100 | Train Loss: 0.52677 | Val Loss: 0.47063
+Epoch 120 | Train Loss: 0.51065 | Val Loss: 0.47056
+Epoch 140 | Train Loss: 0.50461 | Val Loss: 0.44637
+Epoch 160 | Train Loss: 0.48105 | Val Loss: 0.44270
+Epoch 180 | Train Loss: 0.47902 | Val Loss: 0.43800
+Early stopping at epoch 196
+
+Final Performance
+RMSE: 0.6527
+MAE : 0.4837
+R²  : 0.7129
+----------------------------------------
+Completed | RMSE: 0.652695 | MAE: 0.483718 | R2: 0.712901
+
+
+Running Config_5 | Exp4_RDKit_no_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.72062 | Val Loss: 0.61385
+Epoch 40 | Train Loss: 0.62786 | Val Loss: 0.53955
+Epoch 60 | Train Loss: 0.58375 | Val Loss: 0.50474
+Epoch 80 | Train Loss: 0.55247 | Val Loss: 0.47681
+Epoch 100 | Train Loss: 0.52492 | Val Loss: 0.47414
+Epoch 120 | Train Loss: 0.50844 | Val Loss: 0.45881
+Epoch 140 | Train Loss: 0.50509 | Val Loss: 0.45243
+Epoch 160 | Train Loss: 0.49979 | Val Loss: 0.44415
+Epoch 180 | Train Loss: 0.48917 | Val Loss: 0.43866
+Early stopping at epoch 183
+
+Final Performance
+RMSE: 0.6562
+MAE : 0.4886
+R²  : 0.7098
+----------------------------------------
+Completed | RMSE: 0.656229 | MAE: 0.488583 | R2: 0.709783
+
+
+----------------------------------------------------------------------
+Feature Experiment: Exp5_Combined_with_Temp
+Train shape: (80872, 362)
+Test shape: (20111, 362)
+----------------------------------------------------------------------
+
+
+Running Config_5 | Exp5_Combined_with_Temp | Seed 42
+Using device: cuda
+Epoch 20 | Train Loss: 0.24101 | Val Loss: 0.30683
+Epoch 40 | Train Loss: 0.19400 | Val Loss: 0.28827
+Epoch 60 | Train Loss: 0.16301 | Val Loss: 0.26773
+Epoch 80 | Train Loss: 0.15073 | Val Loss: 0.26476
+Early stopping at epoch 86
+
+Final Performance
+RMSE: 0.5108
+MAE : 0.3342
+R²  : 0.8242
+----------------------------------------
+Completed | RMSE: 0.510796 | MAE: 0.334151 | R2: 0.824165
+
+
+Running Config_5 | Exp5_Combined_with_Temp | Seed 7
+Using device: cuda
+Epoch 20 | Train Loss: 0.23842 | Val Loss: 0.29240
+Epoch 40 | Train Loss: 0.18567 | Val Loss: 0.26521
+Epoch 60 | Train Loss: 0.16493 | Val Loss: 0.26025
+Epoch 80 | Train Loss: 0.15553 | Val Loss: 0.27693
+Early stopping at epoch 88
+
+Final Performance
+RMSE: 0.5098
+MAE : 0.3329
+R²  : 0.8249
+----------------------------------------
+Completed | RMSE: 0.509773 | MAE: 0.332942 | R2: 0.824868
+
+
+Running Config_5 | Exp5_Combined_with_Temp | Seed 99
+Using device: cuda
+Epoch 20 | Train Loss: 0.24003 | Val Loss: 0.30035
+Epoch 40 | Train Loss: 0.19232 | Val Loss: 0.27638
+Epoch 60 | Train Loss: 0.17111 | Val Loss: 0.27433
+Early stopping at epoch 74
+
+Final Performance
+RMSE: 0.5136
+MAE : 0.3422
+R²  : 0.8222
+----------------------------------------
+Completed | RMSE: 0.513647 | MAE: 0.342206 | R2: 0.822196
+
+
+Running Config_5 | Exp5_Combined_with_Temp | Seed 123
+Using device: cuda
+Epoch 20 | Train Loss: 0.23888 | Val Loss: 0.29960
+Epoch 40 | Train Loss: 0.19400 | Val Loss: 0.28019
+Epoch 60 | Train Loss: 0.16936 | Val Loss: 0.27829
+Epoch 80 | Train Loss: 0.14722 | Val Loss: 0.26387
+Epoch 100 | Train Loss: 0.13760 | Val Loss: 0.26673
+Epoch 120 | Train Loss: 0.13008 | Val Loss: 0.27221
+Early stopping at epoch 136
+
+Final Performance
+RMSE: 0.5098
+MAE : 0.3315
+R²  : 0.8249
+----------------------------------------
+Completed | RMSE: 0.509772 | MAE: 0.331529 | R2: 0.824869
+
+
+Running Config_5 | Exp5_Combined_with_Temp | Seed 2024
+Using device: cuda
+Epoch 20 | Train Loss: 0.23951 | Val Loss: 0.29606
+Epoch 40 | Train Loss: 0.19274 | Val Loss: 0.28414
+Epoch 60 | Train Loss: 0.16419 | Val Loss: 0.27152
+Early stopping at epoch 74
+
+Final Performance
+RMSE: 0.5166
+MAE : 0.3413
+R²  : 0.8202
+----------------------------------------
+Completed | RMSE: 0.516588 | MAE: 0.341348 | R2: 0.820154
+
+
+----------------------------------------------------------------------
+Config_5 COMPLETED
+Runs completed: 25
+Configuration results saved to:
+C:\solubility prediction system\results\Config_5_results.xlsx
+----------------------------------------------------------------------
+
+
+======================================================================
+ALL CONFIGURATIONS COMPLETED
+======================================================================
+
+
+======================================================================
+FINAL RESULTS CREATED
+Total runs: 125
+Expected runs: 125
+Final results saved to:
+C:\solubility prediction system\results\ann_final_experiment_results.xlsx
+======================================================================
