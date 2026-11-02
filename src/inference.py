@@ -1,189 +1,521 @@
+
 import os
 import argparse
+import tempfile
+import subprocess
+import warnings
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import torch
 import joblib
-import tempfile
-import subprocess
-from pathlib import Path
+
 from rdkit import Chem
-from rdkit.Chem import Descriptors, MACCSkeys
-import warnings
+from rdkit.Chem import Descriptors
+
+# Existing ANN/PINN model architecture
 from ann_model import Solubility_Predictor
+
 warnings.filterwarnings("ignore")
 
+
 # ============================================================
-#  Project Paths Setup
+# Project Paths Setup
 # ============================================================
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODELS_DIR = PROJECT_ROOT / "models"
-CP_MODEL_PT = MODELS_DIR / "chemprop_model" / "model_0" / "best.pt"
+
+CP_MODEL_PT = (
+    MODELS_DIR / "chemprop_model" / "model_0" / "best.pt"
+)
+
 
 # ============================================================
-#  Feature Extraction Logic (Tabular Models)
+#  Calculate and return nine RDKit molecular properties
 # ============================================================
-def extract_rdkit_descriptors(smiles):
-    empty_dict = {
-        'MolWt': np.nan, 'HeavyAtomCount': np.nan, 'LogP': np.nan,
-        'TPSA': np.nan, 'HDonors': np.nan, 'HAcceptors': np.nan,
-        'RotatableBonds': np.nan, 'RingCount': np.nan, 'FractionCSP3': np.nan
-    }
-    mol = Chem.MolFromSmiles(smiles) if pd.notna(smiles) else None
-    if mol is None: return empty_dict
 
+def calculate_molecular_properties(smiles):
+    """
+   
+    Calculates nine RDKit descriptors from a SMILES string.
+    These properties are returned to the user.
+    MACCS fingerprints are NOT included in this output.
+    """
+
+    # Validate that the SMILES is a non-empty string
+    if not isinstance(smiles, str) or not smiles.strip():
+        raise ValueError("SMILES must be a non-empty string.")
+
+    # Convert SMILES into an RDKit molecule
+    mol = Chem.MolFromSmiles(smiles)
+
+    # Reject invalid SMILES instead of continuing
+    if mol is None:
+        raise ValueError(f"Invalid SMILES string: {smiles}")
+
+    #  Calculate the nine user-facing properties
     return {
-        'MolWt': Descriptors.MolWt(mol), 'HeavyAtomCount': Descriptors.HeavyAtomCount(mol),
-        'LogP': Descriptors.MolLogP(mol), 'TPSA': Descriptors.TPSA(mol),
-        'HDonors': Descriptors.NumHDonors(mol), 'HAcceptors': Descriptors.NumHAcceptors(mol),
-        'RotatableBonds': Descriptors.NumRotatableBonds(mol), 'RingCount': Descriptors.RingCount(mol),
-        'FractionCSP3': Descriptors.FractionCSP3(mol),
+        "MolWt": float(Descriptors.MolWt(mol)),
+        "HeavyAtomCount": int(Descriptors.HeavyAtomCount(mol)),
+        "LogP": float(Descriptors.MolLogP(mol)),
+        "TPSA": float(Descriptors.TPSA(mol)),
+        "HDonors": int(Descriptors.NumHDonors(mol)),
+        "HAcceptors": int(Descriptors.NumHAcceptors(mol)),
+        "RotatableBonds": int(Descriptors.NumRotatableBonds(mol)),
+        "RingCount": int(Descriptors.RingCount(mol)),
+        "FractionCSP3": float(Descriptors.FractionCSP3(mol)),
     }
+
+
+# ============================================================
+# RDKit descriptor wrapper
+# ============================================================
+
+def extract_rdkit_descriptors(smiles):
+    """
+    Returns the same nine descriptors used by the model pipeline.
+    """
+    # the descriptor calculations.
+    return calculate_molecular_properties(smiles)
+
+
+# ============================================================
+# MACCS fingerprint extraction
+# Still used internally by ANN/PINN.
+# Fingerprints are NOT returned to the user.
+# ============================================================
 
 def extract_maccs_fingerprints(smiles):
-    empty_dict = {f'MACCS_{i}': np.nan for i in range(166)}
-    mol = Chem.MolFromSmiles(smiles) if pd.notna(smiles) else None
-    if mol is None: return empty_dict
+
+    # Import MACCSkeys locally
+    from rdkit.Chem import MACCSkeys
+
+    # Parse SMILES
+    mol = Chem.MolFromSmiles(smiles)
+
+    # Reject invalid SMILES
+    if mol is None:
+        raise ValueError(f"Invalid SMILES string: {smiles}")
+
+    # Generate 166 MACCS bits
     fp = list(MACCSkeys.GenMACCSKeys(mol))[1:167]
-    return {f'MACCS_{i}': bit for i, bit in enumerate(fp)}
+
+    # Return fingerprints for internal model features
+    return {
+        f"MACCS_{i}": int(bit)
+        for i, bit in enumerate(fp)
+    }
+
+
+# ============================================================
+# Generate model features
+# This function still generates 351 features for ANN/PINN.
+# ============================================================
 
 def generate_features(solute_smiles, solvent_smiles, temperature):
-    solute_rdkit = {f"Solute_{k}": v for k, v in extract_rdkit_descriptors(solute_smiles).items()}
-    solvent_rdkit = {f"Solv_{k}": v for k, v in extract_rdkit_descriptors(solvent_smiles).items()}
-    solute_maccs = {f"Solute_{k}": v for k, v in extract_maccs_fingerprints(solute_smiles).items()}
-    solvent_maccs = {f"Solv_{k}": v for k, v in extract_maccs_fingerprints(solvent_smiles).items()}
 
+    # Solute RDKit descriptors
+    solute_rdkit = {
+        f"Solute_{k}": v
+        for k, v in extract_rdkit_descriptors(
+            solute_smiles
+        ).items()
+    }
+
+    # Solvent RDKit descriptors
+    solvent_rdkit = {
+        f"Solv_{k}": v
+        for k, v in extract_rdkit_descriptors(
+            solvent_smiles
+        ).items()
+    }
+
+    # Solute MACCS fingerprints: internal model features only
+    solute_maccs = {
+        f"Solute_{k}": v
+        for k, v in extract_maccs_fingerprints(
+            solute_smiles
+        ).items()
+    }
+
+    # Solvent MACCS fingerprints: internal model features only
+    solvent_maccs = {
+        f"Solv_{k}": v
+        for k, v in extract_maccs_fingerprints(
+            solvent_smiles
+        ).items()
+    }
+
+    # Add temperature and all model features
     features = {"Temperature_K": temperature}
     features.update(solute_rdkit)
     features.update(solute_maccs)
     features.update(solvent_rdkit)
     features.update(solvent_maccs)
+
     return pd.DataFrame([features])
 
+
 # ============================================================
-# Prediction Pipeline
+# ANN prediction moved into a helper function
 # ============================================================
-def predict_solubility(solute_smiles, solvent_smiles, temperature):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
-    # ---------------------------------------------------------
-    #  Tabular Feature Generation
-    # ---------------------------------------------------------
-    df_features = generate_features(solute_smiles, solvent_smiles, temperature)
-    
-    # ---------------------------------------------------------
-    #  ANN Prediction
-    # ---------------------------------------------------------
-    ann_medians = joblib.load(MODELS_DIR / "train_medians.pkl")
-    ann_scaler = joblib.load(MODELS_DIR / "scaler.pkl")
-    ann_columns = joblib.load(MODELS_DIR / "feature_columns.pkl")
-    
+
+def predict_ann(df_features, device):
+
+    #  Load ANN preprocessing artifacts
+    ann_medians = joblib.load(
+        MODELS_DIR / "train_medians.pkl"
+    )
+
+    ann_scaler = joblib.load(
+        MODELS_DIR / "scaler.pkl"
+    )
+
+    ann_columns = joblib.load(
+        MODELS_DIR / "feature_columns.pkl"
+    )
+
+    # Fill missing values using training medians
     df_ann = df_features.fillna(ann_medians)
+
+    # Ensure expected columns exist
     for col in ann_columns:
-        if col not in df_ann.columns: df_ann[col] = 0.0
-            
-    X_ann = ann_scaler.transform(df_ann[ann_columns])
-    X_ann_tensor = torch.tensor(X_ann, dtype=torch.float32).to(device)
-    
-    ann_model = Solubility_Predictor(len(ann_columns)).to(device)
-    ann_model.load_state_dict(torch.load(MODELS_DIR / "best_ann_model.pth", map_location=device, weights_only=True))
+        if col not in df_ann.columns:
+            df_ann[col] = 0.0
+
+    # Apply the saved scaler
+    X_ann = ann_scaler.transform(
+        df_ann[ann_columns]
+    )
+
+    # Convert input into a PyTorch tensor
+    X_ann_tensor = torch.tensor(
+        X_ann, dtype=torch.float32
+    ).to(device)
+
+    # Reconstruct the trained ANN architecture
+    ann_model = Solubility_Predictor(
+        len(ann_columns)
+    ).to(device)
+
+    # Load trained ANN weights
+    ann_model.load_state_dict(
+        torch.load(
+            MODELS_DIR / "best_ann_model.pth",
+            map_location=device,
+            weights_only=True,
+        )
+    )
+
+    # Set inference mode
     ann_model.eval()
-    with torch.no_grad():
-        ann_pred = ann_model(X_ann_tensor).item()
 
-    # ---------------------------------------------------------
-    #  PINN Prediction
-    # ---------------------------------------------------------
-    pinn_medians = joblib.load(MODELS_DIR / "pinn_train_medians.pkl")
-    pinn_scaler = joblib.load(MODELS_DIR / "pinn_scaler.pkl")
-    pinn_columns = joblib.load(MODELS_DIR / "pinn_feature_columns.pkl")
-    
+    # Predict without calculating gradients
+    with torch.no_grad():
+        prediction = ann_model(
+            X_ann_tensor
+        ).item()
+
+    return float(prediction)
+
+
+# ============================================================
+# PINN prediction moved into a helper function
+# Prediction approach and trained weights remain unchanged.
+# ============================================================
+
+def predict_pinn(df_features, device):
+
+    # Load PINN-specific preprocessing artifacts
+    pinn_medians = joblib.load(
+        MODELS_DIR / "pinn_train_medians.pkl"
+    )
+
+    pinn_scaler = joblib.load(
+        MODELS_DIR / "pinn_scaler.pkl"
+    )
+
+    pinn_columns = joblib.load(
+        MODELS_DIR / "pinn_feature_columns.pkl"
+    )
+
+    # Fill missing values using PINN training medians
     df_pinn = df_features.fillna(pinn_medians)
-    for col in pinn_columns:
-        if col not in df_pinn.columns: df_pinn[col] = 0.0
-            
-    X_pinn = pinn_scaler.transform(df_pinn[pinn_columns])
-    X_pinn_tensor = torch.tensor(X_pinn, dtype=torch.float32).to(device)
-    
-    pinn_model = Solubility_Predictor(len(pinn_columns)).to(device)
-    pinn_model.load_state_dict(torch.load(MODELS_DIR / "best_pinn_model.pth", map_location=device, weights_only=True))
-    pinn_model.eval()
-    with torch.no_grad():
-        pinn_pred = pinn_model(X_pinn_tensor).item()
 
-    # ---------------------------------------------------------
-    #  Chemprop Prediction (via Subprocess CLI)
-    # ---------------------------------------------------------
-    cp_scaler = joblib.load(MODELS_DIR / "chemprop_scaler.pkl")
-    scaled_temperature = cp_scaler.transform([[temperature]])[0][0]
-    
+    # Ensure expected columns exist
+    for col in pinn_columns:
+        if col not in df_pinn.columns:
+            df_pinn[col] = 0.0
+
+    # Apply the saved PINN scaler
+    X_pinn = pinn_scaler.transform(
+        df_pinn[pinn_columns]
+    )
+
+    # Convert to a PyTorch tensor
+    X_pinn_tensor = torch.tensor(
+        X_pinn, dtype=torch.float32
+    ).to(device)
+
+    #  Reconstruct the trained PINN architecture
+    pinn_model = Solubility_Predictor(
+        len(pinn_columns)
+    ).to(device)
+
+    # Load trained PINN weights
+    pinn_model.load_state_dict(
+        torch.load(
+            MODELS_DIR / "best_pinn_model.pth",
+            map_location=device,
+            weights_only=True,
+        )
+    )
+
+    pinn_model.eval()
+
+    # Run inference
+    with torch.no_grad():
+        prediction = pinn_model(
+            X_pinn_tensor
+        ).item()
+
+    return float(prediction)
+
+
+def predict_chemprop(
+    solute_smiles,
+    solvent_smiles,
+    temperature,
+):
+
+    #  Load the saved temperature scaler
+    cp_scaler = joblib.load(
+        MODELS_DIR / "chemprop_scaler.pkl"
+    )
+
+    # Scale temperature using training parameters
+    scaled_temperature = float(
+        cp_scaler.transform([[temperature]])[0][0]
+    )
+
+    # Create temporary input/output CSV files
     with tempfile.TemporaryDirectory() as tmpdir:
-        input_csv = os.path.join(tmpdir, "cp_input.csv")
-        output_csv = os.path.join(tmpdir, "cp_output.csv")
-        
-        # Create a single-row CSV formatted exactly as Chemprop expects
+
+        input_csv = Path(tmpdir) / "cp_input.csv"
+        output_csv = Path(tmpdir) / "cp_output.csv"
+
+        # Build the Chemprop input DataFrame
         df_cp_input = pd.DataFrame({
             "solute": [solute_smiles],
             "solvent": [solvent_smiles],
-            "temperature": [scaled_temperature]
+            "temperature": [scaled_temperature],
         })
-        df_cp_input.to_csv(input_csv, index=False)
-        
-        # Execute the Chemprop CLI command silently
+
+        df_cp_input.to_csv(
+            input_csv, index=False
+        )
+
+        # UNCHANGED: Build the Chemprop prediction command
         cmd = [
-            "chemprop", "predict",
-            "-i", input_csv,
-            "-o", output_csv,
+            "chemprop",
+            "predict",
+            "-i", str(input_csv),
+            "-o", str(output_csv),
             "--model-paths", str(CP_MODEL_PT),
             "-s", "solute", "solvent",
-            "--descriptors-columns", "temperature"
+            "--descriptors-columns", "temperature",
         ]
-        
-        
-    
-        try:
-            subprocess.run(cmd, check=True, capture_output=True, text=True)
-            df_cp_out = pd.read_csv(output_csv)
-            if "target" in df_cp_out.columns:
-                cp_pred = df_cp_out["target"].iloc[0]
-            else:
-                cp_pred = df_cp_out.iloc[0, -1] 
-        except Exception as e:
-            print(f"[ERROR] Chemprop inference failed: {e}")
-            cp_pred = 0.0
 
-    # ---------------------------------------------------------
-    #  Final Late-Fusion Ensemble Math
-    # ---------------------------------------------------------
-    final_logs = (0.32 * ann_pred) + (0.14 * pinn_pred) + (0.54 * float(cp_pred))
     
-    return {
+        subprocess.run(
+            cmd,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        # NEW: Verify that Chemprop created an output file
+        if not output_csv.exists():
+            raise RuntimeError(
+                "Chemprop did not produce an output file."
+            )
+
+        df_cp_out = pd.read_csv(output_csv)
+
+        #  Check for empty output
+        if df_cp_out.empty:
+            raise RuntimeError(
+                "Chemprop returned an empty prediction."
+            )
+
+        # Read the prediction from the CSV
+        if "target" in df_cp_out.columns:
+            prediction = df_cp_out["target"].iloc[0]
+        else:
+            prediction = df_cp_out.iloc[0, -1]
+
+        # NEW: Reject a missing prediction
+        if pd.isna(prediction):
+            raise RuntimeError(
+                "Chemprop returned a missing prediction."
+            )
+
+        return float(prediction)
+
+
+# ============================================================
+# Adds solute and solvent properties to the returned output.
+# ============================================================
+
+def predict_solubility(
+    solute_smiles,
+    solvent_smiles,
+    temperature,
+):
+
+    # Validate temperature
+    if not np.isfinite(temperature) or temperature <= 0:
+        raise ValueError(
+            "Temperature must be a positive finite value in Kelvin."
+        )
+
+    # Calculate properties to return to the user
+    solute_properties = calculate_molecular_properties(
+        solute_smiles
+    )
+
+    solvent_properties = calculate_molecular_properties(
+        solvent_smiles
+    )
+
+    # Generate the full model feature set
+    df_features = generate_features(
+        solute_smiles,
+        solvent_smiles,
+        temperature,
+    )
+
+    # Select GPU if available, otherwise CPU
+    device = torch.device(
+        "cuda" if torch.cuda.is_available() else "cpu"
+    )
+
   
-        "Ensemble_LogS": round(final_logs, 4)
+    # The model predictions themselves use the same approach.
+    ann_pred = predict_ann(
+        df_features, device
+    )
+
+    pinn_pred = predict_pinn(
+        df_features, device
+    )
+
+    cp_pred = predict_chemprop(
+        solute_smiles,
+        solvent_smiles,
+        temperature,
+    )
+
+    # Original ensemble weights
+    final_logs = (
+        0.32 * ann_pred
+        + 0.14 * pinn_pred
+        + 0.54 * cp_pred
+    )
+
+
+    # Previously, only Ensemble_LogS was returned.
+    # Now the result also contains input and RDKit properties.
+    # Fingerprints and other internal features are not returned.
+    return {
+        "input": {
+            "solute_smiles": solute_smiles,
+            "solvent_smiles": solvent_smiles,
+            "temperature_K": float(temperature),
+        },
+
+        "solute_properties": solute_properties,
+
+        "solvent_properties": solvent_properties,
+
+        "ensemble_prediction": {
+            "LogS": round(float(final_logs), 4),
+            "unit": "log10(mol/L)",
+        },
     }
 
-# ============================================================
-#  Command Line Interface
-# ============================================================
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Predict solubility (LogS) for a solute-solvent pair.")
-    parser.add_argument("--solute", type=str, required=True, help="SMILES of the Solute (e.g., CCO)")
-    parser.add_argument("--solvent", type=str, required=True, help="SMILES of the Solvent (e.g., O)")
-    parser.add_argument("--temp", type=float, required=True, help="Temperature in Kelvin (e.g., 298.15)")
-    
-    args = parser.parse_args()
-    
-    print("\n[AI Solubility Inference Engine]")
-    print(f"Solute:  {args.solute}")
-    print(f"Solvent: {args.solvent}")
-    print(f"Temp:    {args.temp} K\n")
-    
-    print("Generating features and executing late-fusion ensemble...\n")
-    
-    results = predict_solubility(args.solute, args.solvent, args.temp)
-    
-    print("--- PREDICTION RESULTS ---")
 
-    print(f"=============================")
-    print(f"⭐ OPTIMAL ENSEMBLE: {results['Ensemble_LogS']} mol/L")
-    print(f"=============================\n")
+# ========================================================================
+# Displays LogS plus the new molecular properties of solvent and solute.
+# ========================================================================
+
+if __name__ == "__main__":
+
+    # Create the argument parser
+    parser = argparse.ArgumentParser(
+        description=(
+            "Predict solubility and calculate RDKit molecular "
+            "properties for a solute-solvent pair."
+        )
+    )
+
+    # Required solute input
+    parser.add_argument(
+        "--solute",
+        type=str,
+        required=True,
+        help="Solute SMILES, e.g. CCO",
+    )
+
+    # Required solvent input
+    parser.add_argument(
+        "--solvent",
+        type=str,
+        required=True,
+        help="Solvent SMILES, e.g. O",
+    )
+
+    #  Required temperature input
+    parser.add_argument(
+        "--temp",
+        type=float,
+        required=True,
+        help="Temperature in Kelvin, e.g. 298.15",
+    )
+
+    args = parser.parse_args()
+
+    # Handle selected input and inference errors
+    try:
+        results = predict_solubility(
+            args.solute,
+            args.solvent,
+            args.temp,
+        )
+
+        # NEW: Print the predicted LogS
+        print("\n--- SOLUBILITY PREDICTION ---")
+        print(
+            f"Predicted LogS: "
+            f"{results['ensemble_prediction']['LogS']}"
+        )
+        print(
+            f"Unit: "
+            f"{results['ensemble_prediction']['unit']}"
+        )
+
+        #  Print all nine solute properties
+        print("\n--- SOLUTE PROPERTIES ---")
+        for name, value in results["solute_properties"].items():
+            print(f"{name}: {value}")
+
+        # Print all nine solvent properties
+        print("\n--- SOLVENT PROPERTIES ---")
+        for name, value in results["solvent_properties"].items():
+            print(f"{name}: {value}")
+
+    # Report selected errors instead of a traceback
+    except (ValueError, RuntimeError, FileNotFoundError) as exc:
+        parser.error(str(exc))
