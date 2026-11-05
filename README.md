@@ -11,18 +11,18 @@ This repository implements a **Late-Fusion Optimal Ensemble** combining a descri
 
 ## 📌 Project Highlights
 
-- **Leakage-Free Evaluation:** Uses `GroupShuffleSplit` with the solute–solvent SMILES pair as the grouping key to evaluate generalization to unseen chemical systems.
+- **Leakage-Free Evaluation:** Uses `GroupShuffleSplit` (random_state=42) with the solute–solvent SMILES pair as the grouping key to evaluate generalization to unseen chemical systems.
 - **Aleatoric Uncertainty Analysis:** Quantifies experimental measurement variability across 3,234 duplicate experimental systems, estimating an intrinsic RMSE noise floor of approximately **0.20 LogS**.
 - **Thermodynamic Regularization:** Incorporates the van 't Hoff relationship as a soft physics-informed loss constraint, using an optimal physics loss weight of `λ_phys = 0.010`.
-- **Molecular Feature Engineering:** Combines RDKit molecular descriptors, MACCS fingerprints, temperature features, and molecular graph representations.
+- **Molecular Feature Engineering:** Combines 18 RDKit molecular descriptors, 332 MACCS fingerprints, and temperature features for a total of 351 input features.
 - **Optimal Late-Fusion Ensemble:** Uses SciPy SLSQP optimization to combine ANN, PINN, and Chemprop predictions through optimized non-negative weights.
-- **Command-Line Inference:** Provides `src/inference.py` to predict LogS for a user-specified solute, solvent, and temperature using the trained models without retraining.
+- **API & Command-Line Inference:** Provides Python backend integration and command-line execution (`src/inference.py`) to predict LogS and output JSON-ready results for a user-specified solute, solvent, and temperature.
 
 ---
 
 ## 📊 Model Architectures & Performance
 
-The final prediction is generated using the following weighted ensemble:
+Both the Artificial Neural Network (ANN) and Physics-Informed Neural Network (PINN) utilize a 4-layer deep neural network designed with batch normalization, LeakyReLU activation, and dropout regularization. The final prediction is generated using the following weighted ensemble:
 
 **`LogS = 0.32 × ANN + 0.14 × PINN + 0.54 × Chemprop`**
 
@@ -52,7 +52,7 @@ The final prediction is generated using the following weighted ensemble:
 │   └── final_ensemble_test_predictions.csv    # Ensemble test predictions
 │
 ├── docs/                                      # DOCUMENTATION
-│   └── Leakage-Free Solubility Prediction from Solute–Solvent Molecular Structures Using Deep Learning and Molecular Graph Learning.docx
+│   └── EcoPlast_Task3.3_Solubility_Prediction_Documentation_Final.pdf
 │
 ├── models/                                    # TRAINED MODELS & PREPROCESSORS
 │   ├── chemprop_model/
@@ -114,8 +114,6 @@ git clone https://github.com/YourUsername/solubility-prediction-system.git
 cd solubility-prediction-system
 ```
 
-Replace the example repository URL with your actual GitHub repository URL.
-
 ### 2. Create and activate a virtual environment
 
 ```bash
@@ -123,19 +121,16 @@ python -m venv .venv
 ```
 
 **Windows (PowerShell):**
-
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
 **Windows (Command Prompt):**
-
 ```bat
 .venv\Scripts\activate.bat
 ```
 
 **macOS/Linux:**
-
 ```bash
 source .venv/bin/activate
 ```
@@ -145,153 +140,150 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-
 Ensure that the environment includes the required packages and compatible versions of PyTorch, RDKit, pandas, NumPy, scikit-learn, joblib, SciPy, and Chemprop.
-
-The Chemprop command-line interface must be available in the active environment. Verify the installation with:
-
-```bash
-chemprop --help
-```
-
-The trained model checkpoints and preprocessing files must also be available under `models/` to run inference.
 
 ---
 
 ## 🚀 Execution Pipeline
 
 ### 1. Data Preparation
-
 Prepare the leakage-free training and test splits and extract the molecular features:
-
 ```bash
 python src/data_prep/prepare_dataset.py
 ```
 
-This step prepares the dataset and generates the feature files used by the downstream training scripts.
-
 ### 2. Data Analysis & Physics Validation
-
 Run the experimental uncertainty analysis and validate the thermodynamic assumptions:
-
 ```bash
 python src/aleatoric_analysis.py
 python src/check_vantthof_quality.py
 python src/physics_lookup.py
 ```
 
-These scripts analyze experimental variability, assess the quality of the van 't Hoff relationship, and generate thermodynamic information for physics-informed learning.
-
 ### 3. Model Training
-
 Train the individual models using the prepared data:
-
 ```bash
 python training/train_ann.py
 python training/train_pinn.py
 python training/train_chemprop.py
 ```
 
-For hyperparameter experiments and physics-loss-weight sweeps, use the corresponding `run_*` scripts in the `training/` directory.
-
-Training is not required when using the existing compatible model checkpoints for inference.
-
 ### 4. Ensemble Evaluation
-
 Evaluate the individual models and optimize the late-fusion ensemble weights:
-
 ```bash
 python src/evaluate_ensemble.py
 ```
 
-The evaluation pipeline calculates ensemble predictions and performance metrics. Results are written to:
+---
 
-```text
-results/ensemble_performance_metrics.csv
+## 🔌 Model Deployment and Integration
+
+The system provides flexible inference capabilities for integration into existing backend systems or direct terminal usage.
+
+### Python Integration (REST API Backend)
+The `predict_solubility()` function can be imported into a Python backend and returns a JSON-ready dictionary.
+
+```python
+from src.inference import predict_solubility
+import json
+
+# Input from the frontend application
+prediction_results = predict_solubility(
+    solute_smiles="O=[N+]([O-])c1cccc2ccccc12",
+    solvent_smiles="CCO",
+    temperature=120
+)
 ```
 
-### 5. Solubility Prediction (Inference)
+**Example JSON Response:**
+```json
+{
+  "input": {
+    "solute_smiles": "CCO",
+    "solvent_smiles": "O",
+    "temperature_K": 298.15
+  },
+  "solute_properties": {
+    "MolWt": 46.069,
+    "HeavyAtomCount": 3,
+    "LogP": -0.0014,
+    "TPSA": 20.23,
+    "HDonors": 1,
+    "HAcceptors": 1,
+    "RotatableBonds": 0,
+    "RingCount": 0,
+    "FractionCSP3": 1.0
+  },
+  "solvent_properties": {
+    "MolWt": 18.015,
+    "HeavyAtomCount": 1,
+    "LogP": -0.8247,
+    "TPSA": 31.5,
+    "HDonors": 2,
+    "HAcceptors": 1,
+    "RotatableBonds": 0,
+    "RingCount": 0,
+    "FractionCSP3": 0.0
+  },
+  "ensemble_prediction": {
+    "LogS": -4.7516,
+    "unit": "log10(mol/L)"
+  }
+}
+```
 
-Use the inference pipeline to predict the LogS of a new solute–solvent system at a specified temperature.
-
-**Command format:**
+### Command-Line Integration
+The prediction script can be executed directly from the command line for automated workflows.
 
 ```bash
-python src/inference.py --solute "<SOLUTE_SMILES>" --solvent "<SOLVENT_SMILES>" --temp <TEMPERATURE_K>
+python src/inference.py --solute "O=[N+]([O-])c1cccc2ccccc12" --solvent "CCO" --temp 120
 ```
 
-**Example:**
-
-```bash
-python src/inference.py --solute CCO --solvent O --temp 298.15
-```
-
-This example uses ethanol as the solute, water as the solvent, and a temperature of 298.15 K.
-
-#### How the inference pipeline works
-
-1. **Input:** Receives the solute SMILES, solvent SMILES, and temperature in Kelvin.
-2. **Feature extraction:** Generates nine RDKit molecular descriptors and 166 MACCS fingerprint features for each molecule, along with temperature.
-3. **ANN prediction:** Loads the trained ANN checkpoint, applies the saved preprocessing pipeline, and predicts LogS.
-4. **PINN prediction:** Loads the trained PINN checkpoint and its corresponding preprocessing files to predict LogS.
-5. **Chemprop prediction:** Writes the input to a temporary CSV file and executes the Chemprop prediction CLI using the trained molecular graph model and scaled temperature.
-6. **Late-fusion ensemble:** Combines the three predictions using the weights 0.32 for ANN, 0.14 for PINN, and 0.54 for Chemprop.
-7. **Output:** Returns the final ensemble LogS prediction rounded to four decimal places.
-
-#### Example output format
-
+**Example terminal output:**
 ```text
-[AI Solubility Inference Engine]
-Solute:  CCO
-Solvent: O
-Temp:    298.15 K
+SOLUBILITY PREDICTION
+Predicted LogS: -4.7516
+Unit: log10(mol/L)
 
-Generating features and executing late-fusion ensemble...
+SOLUTE PROPERTIES
+MolWt: 173.171
+HeavyAtomCount: 13
+LogP: 2.748
+TPSA: 43.14
+HDonors: 0
+HAcceptors: 2
+RotatableBonds: 1
+RingCount: 2
+FractionCSP3: 0.0
 
---- PREDICTION RESULTS ---
-=============================
-OPTIMAL ENSEMBLE LogS: -0.896
-=============================
+SOLVENT PROPERTIES
+MolWt: 46.069
+HeavyAtomCount: 3
+LogP: -0.0014
+TPSA: 20.23
+HDonors: 1
+HAcceptors: 1
+RotatableBonds: 0
+RingCount: 0
+FractionCSP3: 1.0
 ```
 
-*The numerical prediction above is illustrative, not a verified output from the trained models.*
-
-**Inference requirements:**
-
-- The trained ANN and PINN checkpoints must exist in `models/`.
-- The corresponding scalers, median-imputation files, and feature-column metadata must be available.
-- The Chemprop checkpoint must be present at `models/chemprop_model/model_0/best.pt`.
-- The inference environment must have compatible RDKit, PyTorch, scikit-learn, and Chemprop installations.
-- Input SMILES strings must represent valid molecular structures, and the temperature must be supplied in Kelvin.
-
-The inference script uses the existing trained models; it does not repeat dataset preparation, model training, or ensemble-weight optimization.
-
 ---
 
-## 📄 Documentation & Methodology
+## 📈 Displaying Descriptor Effects to the User
 
-Comprehensive technical details are available in the `docs/` folder, including:
+Along with the predicted LogS, solute and solvent properties can be presented with their general effect on solubility. 
 
-- Leakage-free dataset splitting and molecular feature engineering.
-- ANN architecture and hyperparameter experiments.
-- Experimental uncertainty and the estimated intrinsic noise floor.
-- Thermodynamic validation and van 't Hoff regularization.
-- Chemprop molecular graph learning.
-- Optimal late-fusion ensemble evaluation and performance metrics.
+| Molecular Property | Property Value | Solubility | Condition / Note |
+| :--- | :---: | :---: | :--- |
+| Molecular Weight | ⬆ | ⬇ | Especially in water |
+| Heavy Atom Count | ⬆ | ⬇ | Larger molecule |
+| LogP | ⬆ | ⬇ | Water solubility |
+| TPSA | ⬆ | ⬆ | In polar solvents |
+| HDonors | ⬆ | ⬆ | In compatible solvents |
+| HAcceptors | ⬆ | ⬆ | In compatible solvents |
+| Rotatable Bonds | ⬆ | ⬆ | May improve solvent interactions |
+| Ring Count | ⬆ | ⬇ | More rigidity; may reduce solubility |
+| FractionCSP3 | ⬆ | ↕ | May influence solubility |
 
-Refer to the project documentation for the complete methodology and experimental results.
-
----
-
-## 🔬 Technologies Used
-
-- **Python:** Core implementation.
-- **RDKit:** Molecular parsing, descriptors, and MACCS fingerprints.
-- **PyTorch:** ANN and PINN architectures and inference.
-- **Chemprop:** Directed message-passing neural network for molecular graph learning.
-- **Pandas & NumPy:** Data preparation and numerical processing.
-- **Scikit-learn:** Data splitting, preprocessing, and evaluation.
-- **SciPy:** Constrained optimization of ensemble weights.
-- **Joblib:** Saving and loading preprocessing objects.
-
----
+*(⬆ = increases, ⬇ = decreases, ↕ = effect depends on the solute-solvent system)*
