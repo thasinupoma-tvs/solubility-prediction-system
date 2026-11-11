@@ -1,6 +1,9 @@
-# 🧪 Leakage-Free Solubility Prediction System
+from pathlib import Path
+import pypandoc
 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+readme = r'''# 🧪 Leakage-Free Solubility Prediction System
+
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 
 A machine learning pipeline for predicting the equilibrium solubility (LogS in mol/L) of unseen solute–solvent chemical systems across varying temperatures.
@@ -11,11 +14,12 @@ This repository implements a **Late-Fusion Optimal Ensemble** combining a descri
 
 ## 📌 Project Highlights
 
-- **Leakage-Free Evaluation:** Uses `GroupShuffleSplit` (random_state=42) with the solute–solvent SMILES pair as the grouping key to evaluate generalization to unseen chemical systems.
+- **Leakage-Free Evaluation:** Uses `GroupShuffleSplit` (`random_state=42`) with the solute–solvent SMILES pair as the grouping key to evaluate generalization to unseen chemical systems.
 - **Aleatoric Uncertainty Analysis:** Quantifies experimental measurement variability across 3,234 duplicate experimental systems, estimating an intrinsic RMSE noise floor of approximately **0.20 LogS**.
 - **Thermodynamic Regularization:** Incorporates the van 't Hoff relationship as a soft physics-informed loss constraint, using an optimal physics loss weight of `λ_phys = 0.010`.
 - **Molecular Feature Engineering:** Combines 18 RDKit molecular descriptors, 332 MACCS fingerprints, and temperature features for a total of 351 input features.
 - **Optimal Late-Fusion Ensemble:** Uses SciPy SLSQP optimization to combine ANN, PINN, and Chemprop predictions through optimized non-negative weights.
+- **CPU- and GPU-Compatible Inference:** Provides a CPU-only dependency file for inference on computers without a compatible NVIDIA GPU, alongside the main environment for development and training.
 - **API & Command-Line Inference:** Provides Python backend integration and command-line execution (`src/inference.py`) to predict LogS and output JSON-ready results for a user-specified solute, solvent, and temperature.
 
 ---
@@ -79,9 +83,9 @@ Both the Artificial Neural Network (ANN) and Physics-Informed Neural Network (PI
 │
 ├── src/                                       # CORE PYTHON MODULES
 │   ├── data_prep/
-│   │   └── prepare_dataset.py                  # Data splitting & feature extraction
-│   ├── aleatoric_analysis.py                   # Experimental noise analysis
-│   ├── check_vantthof_quality.py               # Thermodynamic validation
+│   │   └── prepare_dataset.py                 # Data splitting & feature extraction
+│   ├── aleatoric_analysis.py                  # Experimental noise analysis
+│   ├── check_vantthof_quality.py              # Thermodynamic validation
 │   ├── physics_lookup.py                      # Enthalpy extraction
 │   ├── vanthoff.py                            # Thermodynamic equations
 │   ├── ann_model.py                           # ANN/PINN architecture
@@ -93,12 +97,13 @@ Both the Artificial Neural Network (ANN) and Physics-Informed Neural Network (PI
 │
 ├── training/                                  # TRAINING EXECUTION SCRIPTS
 │   ├── run_ann_experiments.py                 # ANN hyperparameter experiments
-│   ├── run_pinn_lambda_experiments.py          # PINN loss-weight experiments
+│   ├── run_pinn_lambda_experiments.py         # PINN loss-weight experiments
 │   ├── train_ann.py                           # Final ANN training
 │   ├── train_pinn.py                          # Final PINN training
 │   └── train_chemprop.py                      # Final Chemprop training
 │
-└── requirements.txt                           # Python dependencies
+├── requirements.txt                           # Main development/training dependencies
+└── requirements-cpu.txt                       # CPU-only inference dependencies
 ```
 
 *The structure above summarizes the main project files. Actual filenames and generated artifacts may vary with the local repository.*
@@ -107,53 +112,100 @@ Both the Artificial Neural Network (ANN) and Physics-Informed Neural Network (PI
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repository
+Choose the installation option that matches your task.
+
+### Option A: CPU-only inference (recommended for backend integration)
+
+Use this option when you only need to run predictions and do not have a compatible NVIDIA GPU. The CPU requirements file installs the CPU build of PyTorch and the dependencies used by the inference pipeline.
+
+**1. Clone the repository**
 
 ```bash
-git clone https://github.com/YourUsername/solubility-prediction-system.git
+git clone https://github.com/thasinupoma-tvs/solubility-prediction-system.git
 cd solubility-prediction-system
 ```
 
-### 2. Create and activate a virtual environment
+**2. Create and activate a virtual environment**
 
 ```bash
 python -m venv .venv
 ```
 
-**Windows (PowerShell):**
+Windows (PowerShell):
+
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-**Windows (Command Prompt):**
+Windows (Command Prompt):
+
 ```bat
 .venv\Scripts\activate.bat
 ```
 
-**macOS/Linux:**
+macOS/Linux:
+
 ```bash
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+**3. Install CPU-only inference dependencies**
 
 ```bash
+python -m pip install --upgrade pip
+pip install -r requirements-cpu.txt
+```
+
+**4. Run inference**
+
+```bash
+python src/inference.py --solute "CCO" --solvent "O" --temp 298.15
+```
+
+No GPU is required for this inference setup. The trained model checkpoints and preprocessing files in `models/` are still required.
+
+### Option B: Development and model training
+
+Use the main `requirements.txt` for the project's development/training environment. This file contains the project's main dependencies and the CUDA-enabled PyTorch build configured for the original GPU environment.
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/thasinupoma-tvs/solubility-prediction-system.git
+cd solubility-prediction-system
+```
+
+**2. Create and activate a virtual environment**
+
+Follow the virtual-environment instructions in Option A.
+
+**3. Install the main dependencies**
+
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
-Ensure that the environment includes the required packages and compatible versions of PyTorch, RDKit, pandas, NumPy, scikit-learn, joblib, SciPy, and Chemprop.
+
+The CUDA-enabled PyTorch build requires a compatible NVIDIA GPU and driver. For a different GPU/CUDA setup, install a PyTorch build compatible with that machine by following the official [PyTorch installation guide](https://pytorch.org/get-started/locally/).
 
 ---
 
 ## 🚀 Execution Pipeline
 
+The following steps describe the model development and evaluation workflow. They are not required when using the CPU-only inference setup.
+
 ### 1. Data Preparation
+
 Prepare the leakage-free training and test splits and extract the molecular features:
+
 ```bash
 python src/data_prep/prepare_dataset.py
 ```
 
 ### 2. Data Analysis & Physics Validation
+
 Run the experimental uncertainty analysis and validate the thermodynamic assumptions:
+
 ```bash
 python src/aleatoric_analysis.py
 python src/check_vantthof_quality.py
@@ -161,7 +213,9 @@ python src/physics_lookup.py
 ```
 
 ### 3. Model Training
+
 Train the individual models using the prepared data:
+
 ```bash
 python training/train_ann.py
 python training/train_pinn.py
@@ -169,7 +223,9 @@ python training/train_chemprop.py
 ```
 
 ### 4. Ensemble Evaluation
+
 Evaluate the individual models and optimize the late-fusion ensemble weights:
+
 ```bash
 python src/evaluate_ensemble.py
 ```
@@ -178,16 +234,15 @@ python src/evaluate_ensemble.py
 
 ## 🔌 Model Deployment and Integration
 
-The system provides flexible inference capabilities for integration into existing backend systems or direct terminal usage.
+The system provides inference capabilities for integration into existing backend systems or direct terminal usage.
 
 ### Python Integration (REST API Backend)
+
 The `predict_solubility()` function can be imported into a Python backend and returns a JSON-ready dictionary.
 
 ```python
 from src.inference import predict_solubility
-import json
 
-# Input from the frontend application
 prediction_results = predict_solubility(
     solute_smiles="O=[N+]([O-])c1cccc2ccccc12",
     solvent_smiles="CCO",
@@ -195,15 +250,35 @@ prediction_results = predict_solubility(
 )
 ```
 
-**Example JSON Response:**
+The returned dictionary can be serialized to JSON by the backend:
+
+```python
+import json
+
+print(json.dumps(prediction_results, indent=2))
+```
+
+**Example JSON response** (illustrative output; actual predictions depend on the trained model artifacts):
+
 ```json
 {
   "input": {
-    "solute_smiles": "CCO",
-    "solvent_smiles": "O",
-    "temperature_K": 298.15
+    "solute_smiles": "O=[N+]([O-])c1cccc2ccccc12",
+    "solvent_smiles": "CCO",
+    "temperature_K": 120.0
   },
   "solute_properties": {
+    "MolWt": 173.171,
+    "HeavyAtomCount": 13,
+    "LogP": 2.748,
+    "TPSA": 43.14,
+    "HDonors": 0,
+    "HAcceptors": 2,
+    "RotatableBonds": 1,
+    "RingCount": 2,
+    "FractionCSP3": 0.0
+  },
+  "solvent_properties": {
     "MolWt": 46.069,
     "HeavyAtomCount": 3,
     "LogP": -0.0014,
@@ -214,17 +289,6 @@ prediction_results = predict_solubility(
     "RingCount": 0,
     "FractionCSP3": 1.0
   },
-  "solvent_properties": {
-    "MolWt": 18.015,
-    "HeavyAtomCount": 1,
-    "LogP": -0.8247,
-    "TPSA": 31.5,
-    "HDonors": 2,
-    "HAcceptors": 1,
-    "RotatableBonds": 0,
-    "RingCount": 0,
-    "FractionCSP3": 0.0
-  },
   "ensemble_prediction": {
     "LogS": -4.7516,
     "unit": "log10(mol/L)"
@@ -233,19 +297,21 @@ prediction_results = predict_solubility(
 ```
 
 ### Command-Line Integration
-The prediction script can be executed directly from the command line for automated workflows.
+
+The prediction script can be executed directly from the command line:
 
 ```bash
 python src/inference.py --solute "O=[N+]([O-])c1cccc2ccccc12" --solvent "CCO" --temp 120
 ```
 
-**Example terminal output:**
+**Example terminal output** (illustrative):
+
 ```text
-SOLUBILITY PREDICTION
+--- SOLUBILITY PREDICTION ---
 Predicted LogS: -4.7516
 Unit: log10(mol/L)
 
-SOLUTE PROPERTIES
+--- SOLUTE PROPERTIES ---
 MolWt: 173.171
 HeavyAtomCount: 13
 LogP: 2.748
@@ -256,7 +322,7 @@ RotatableBonds: 1
 RingCount: 2
 FractionCSP3: 0.0
 
-SOLVENT PROPERTIES
+--- SOLVENT PROPERTIES ---
 MolWt: 46.069
 HeavyAtomCount: 3
 LogP: -0.0014
@@ -272,18 +338,30 @@ FractionCSP3: 1.0
 
 ## 📈 Displaying Descriptor Effects to the User
 
-Along with the predicted LogS, solute and solvent properties can be presented with their general effect on solubility. 
+Along with the predicted LogS, solute and solvent properties can be presented with their general effect on solubility. These are qualitative tendencies, not universal rules; the effect depends on the molecular structure and the solute–solvent system.
 
-| Molecular Property | Property Value | Solubility | Condition / Note |
-| :--- | :---: | :---: | :--- |
-| Molecular Weight | ⬆ | ⬇ | Especially in water |
-| Heavy Atom Count | ⬆ | ⬇ | Larger molecule |
-| LogP | ⬆ | ⬇ | Water solubility |
-| TPSA | ⬆ | ⬆ | In polar solvents |
-| HDonors | ⬆ | ⬆ | In compatible solvents |
-| HAcceptors | ⬆ | ⬆ | In compatible solvents |
-| Rotatable Bonds | ⬆ | ⬆ | May improve solvent interactions |
-| Ring Count | ⬆ | ⬇ | More rigidity; may reduce solubility |
-| FractionCSP3 | ⬆ | ↕ | May influence solubility |
+| Molecular Property | General tendency | Condition / Note |
+| :--- | :---: | :--- |
+| Molecular Weight | Often increases molecular size; may reduce solubility | Especially relevant when comparing related compounds |
+| Heavy Atom Count | Often increases molecular size; may reduce solubility | Depends on molecular structure |
+| LogP | Higher LogP generally indicates greater lipophilicity and may reduce water solubility | Water is a polar solvent |
+| TPSA | Higher TPSA may improve solubility in compatible polar solvents | Depends on solvent compatibility |
+| HDonors | May increase solubility through hydrogen bonding | Requires a compatible solvent |
+| HAcceptors | May increase solubility through hydrogen bonding | Requires a compatible solvent |
+| Rotatable Bonds | May affect flexibility and solvent interactions | Effect is system-dependent |
+| Ring Count | May affect rigidity and packing | Effect is system-dependent |
+| FractionCSP3 | May influence molecular shape and solubility | No universal direction |
 
-*(⬆ = increases, ⬇ = decreases, ↕ = effect depends on the solute-solvent system)*
+---
+
+## 📚 Documentation
+
+Project documentation is available in:
+
+`docs/EcoPlast_Task3.3_Solubility_Prediction_Documentation_Final.pdf`
+'''
+
+out = Path("/mnt/data/README.md")
+pypandoc.convert_text(readme, "md", format="md", outputfile=str(out), extra_args=["--standalone"])
+print(f"Created: {out}")
+print(f"File size: {out.stat().st_size:,} bytes")
