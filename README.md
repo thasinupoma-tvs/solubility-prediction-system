@@ -1,7 +1,4 @@
-from pathlib import Path
-import pypandoc
-
-readme = r'''# 🧪 Leakage-Free Solubility Prediction System
+# 🧪 Leakage-Free Solubility Prediction System
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)](https://pytorch.org/)
