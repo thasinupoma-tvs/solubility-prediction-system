@@ -356,9 +356,3 @@ Along with the predicted LogS, solute and solvent properties can be presented wi
 Project documentation is available in:
 
 `docs/EcoPlast_Task3.3_Solubility_Prediction_Documentation_Final.pdf`
-'''
-
-out = Path("/mnt/data/README.md")
-pypandoc.convert_text(readme, "md", format="md", outputfile=str(out), extra_args=["--standalone"])
-print(f"Created: {out}")
-print(f"File size: {out.stat().st_size:,} bytes")
