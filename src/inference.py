@@ -1,4 +1,3 @@
-
 import os
 import argparse
 import tempfile
@@ -30,6 +29,32 @@ MODELS_DIR = PROJECT_ROOT / "models"
 CP_MODEL_PT = (
     MODELS_DIR / "chemprop_model" / "model_0" / "best.pt"
 )
+
+def get_device():
+    """
+    Test whether CUDA can actually execute tensor operations.
+    Fall back to CPU if CUDA initialization or execution fails.
+    """
+    if torch.cuda.is_available():
+        try:
+            test_tensor = torch.randn(100, 100, device="cuda")
+            _ = torch.matmul(test_tensor, test_tensor)
+            torch.cuda.synchronize()
+
+            print("CUDA is working. Using GPU.")
+            return torch.device("cuda")
+
+        except Exception as exc:
+            print(f"CUDA initialization/test failed: {exc}")
+            print("Falling back to CPU.")
+
+            try:
+                torch.cuda.empty_cache()
+            except Exception:
+                pass
+
+    print("Using CPU for inference.")
+    return torch.device("cpu")
 
 
 # ============================================================
@@ -328,15 +353,55 @@ def predict_chemprop(
             "--descriptors-columns", "temperature",
         ]
 
-    
-        subprocess.run(
-            cmd,
-            check=True,
-            capture_output=True,
-            text=True,
-        )
+        # New
+        env = os.environ.copy()
 
-        # NEW: Verify that Chemprop created an output file
+        try:
+            subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True,
+                env=env,
+            )
+
+        except subprocess.CalledProcessError as exc:
+
+            error_message = (
+                (exc.stderr or "") + "\n" + (exc.stdout or "")
+            )
+
+            if any(
+                keyword in error_message.upper()
+                for keyword in ["CUDA", "CUBLAS", "GPU"]
+            ):
+                print("Chemprop GPU execution failed.")
+                print("Retrying Chemprop inference using CPU.")
+
+                cpu_env = os.environ.copy()
+                cpu_env["CUDA_VISIBLE_DEVICES"] = ""
+
+                try:
+                    subprocess.run(
+                        cmd,
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                        env=cpu_env,
+                    )
+
+                except subprocess.CalledProcessError as cpu_exc:
+                    raise RuntimeError(
+                        "Chemprop CPU inference also failed:\n"
+                        + (cpu_exc.stderr or "")
+                    ) from cpu_exc
+
+            else:
+                raise RuntimeError(
+                    f"Chemprop inference failed:\n{error_message}"
+                ) from exc
+
+        #  Verify that Chemprop created an output file
         if not output_csv.exists():
             raise RuntimeError(
                 "Chemprop did not produce an output file."
@@ -398,10 +463,7 @@ def predict_solubility(
     )
 
     # Select GPU if available, otherwise CPU
-    device = torch.device(
-        "cuda" if torch.cuda.is_available() else "cpu"
-    )
-
+    device = get_device()
   
     # The model predictions themselves use the same approach.
     ann_pred = predict_ann(
@@ -495,7 +557,7 @@ if __name__ == "__main__":
             args.temp,
         )
 
-        # NEW: Print the predicted LogS
+        #  Print the predicted LogS
         print("\n--- SOLUBILITY PREDICTION ---")
         print(
             f"Predicted LogS: "
